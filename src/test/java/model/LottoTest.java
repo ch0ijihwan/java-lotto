@@ -81,7 +81,6 @@ class LottoTest {
         assertThat(actual).isEqualTo(expect);
     }
 
-
     @ParameterizedTest
     @DisplayName("입력 받은 로또 넘버와 비교하여 매칭된 넘버의 갯수를 반환한다.")
     @MethodSource("createMatchingLottoNumbersParameterProvider")
