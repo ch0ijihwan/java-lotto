@@ -12,10 +12,10 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class LottoNumbersTest {
+class LottoTest {
 
     private static final int LOTTO_NUMBERS_SIZE = 6;
-    private Lotto lottoNumbers;
+    private Lotto lotto;
 
     @Test
     @DisplayName("입력 받은 값에 해당하는 로또 넘버를 생성한다.")
@@ -68,14 +68,14 @@ class LottoNumbersTest {
     void getLottoNumbers() {
         //given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        lottoNumbers = Lotto.createLottoNumbers(numbers);
+        lotto = Lotto.createLottoNumbers(numbers);
         List<LottoNumber> expect = List.of(
                 LottoNumber.valueOf(1), LottoNumber.valueOf(2), LottoNumber.valueOf(3),
                 LottoNumber.valueOf(4), LottoNumber.valueOf(5), LottoNumber.valueOf(6)
         );
 
         //when
-        List<LottoNumber> actual = lottoNumbers.getLottoNumbers();
+        List<LottoNumber> actual = lotto.getLottoNumbers();
 
         //then
         assertThat(actual).isEqualTo(expect);
@@ -88,14 +88,14 @@ class LottoNumbersTest {
     void measureMatchingLottoNumber(final Lotto comparisonLottoNumbers, final int matchingCount) {
         //given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        Lotto lottoNumbers = Lotto.createLottoNumbers(numbers);
+        Lotto lotto = Lotto.createLottoNumbers(numbers);
         List<LottoNumber> expect = List.of(
                 LottoNumber.valueOf(1), LottoNumber.valueOf(2), LottoNumber.valueOf(3),
                 LottoNumber.valueOf(4), LottoNumber.valueOf(5), LottoNumber.valueOf(6)
         );
 
         //when
-        int actual = lottoNumbers.measureMatchingLottoNumber(comparisonLottoNumbers);
+        int actual = lotto.measureMatchingLottoNumber(comparisonLottoNumbers);
 
         //then
         assertThat(actual).isEqualTo(matchingCount);
