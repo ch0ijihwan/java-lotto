@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -20,7 +21,6 @@ public class Lotto {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-
     public static Lotto createAutoLottoNumbers() {
         Collections.shuffle(allLottoNumbers);
         List<Integer> peekLottoNumbers = allLottoNumbers.stream()
@@ -38,7 +38,7 @@ public class Lotto {
         validateDuplication(numbers);
         this.lottoNumbers = numbers.stream()
                 .map(LottoNumber::valueOf)
-                .sorted()
+                .sorted(Comparator.comparingInt(LottoNumber::getValue))
                 .collect(Collectors.toUnmodifiableList());
     }
 
