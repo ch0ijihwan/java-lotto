@@ -14,11 +14,11 @@ public class Controller {
     }
 
     public void run() {
-        Money earlylMoney = new Money(input.inputMoney());
-        Lottos lottos = new Lottos(earlylMoney);
+        Money initialMoney = new Money(input.inputMoney());
+        Lottos lottos = new Lottos(initialMoney);
         output.displayDetailsOfLottoPurchased(lottos.getLottos());
         WinningLotto winningLotto = inputWinningLotto();
-        displayTotalResultOfLottoGames(earlylMoney, lottos, winningLotto);
+        displayTotalResultOfLottoGames(initialMoney, lottos, winningLotto);
     }
 
     private WinningLotto inputWinningLotto() {
@@ -27,8 +27,8 @@ public class Controller {
         return new WinningLotto(inputtedWinningLottoNumbers, inputtedBonusNumber);
     }
 
-    private void displayTotalResultOfLottoGames(final Money earlylMoney, final Lottos lottos, final WinningLotto winningLotto) {
+    private void displayTotalResultOfLottoGames(final Money initialMoney, final Lottos lottos, final WinningLotto winningLotto) {
         output.displayLottoTotalResult(lottos.countLottoRanks(winningLotto));
-        output.displayRateOfProfit(earlylMoney.calculateRateOfProfit(lottos.getToTalProfit()));
+        output.displayRateOfProfit(initialMoney.calculateRateOfProfit(lottos.getToTalProfit()));
     }
 }
