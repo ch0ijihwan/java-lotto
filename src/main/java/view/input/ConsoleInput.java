@@ -11,7 +11,6 @@ public class ConsoleInput implements Input {
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 볼 넘버를 입력해주세요. %n";
     private static final String INPUT_WINNING_LOTTO_NUMBERS = "지난 주 당첨 번호를 입력해 주세요.%n";
 
-
     private static final Scanner SCANNER = new Scanner(System.in);
 
     @Override
