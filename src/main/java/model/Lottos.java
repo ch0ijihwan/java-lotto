@@ -9,8 +9,9 @@ import java.util.stream.Stream;
 
 public class Lottos {
 
+    private static final int DEFAULT_MONEY_VALUE = 0;
     private final List<Lotto> lottos;
-    private Money totalProfit = new Money(0);
+    private Money totalProfit = new Money(DEFAULT_MONEY_VALUE);
 
     public Lottos(final Money money) {
         lottos = addAutoLotto(money.getChanceToBuyLotto());
@@ -30,11 +31,15 @@ public class Lottos {
         Map<Rank, Integer> lottoResults = new HashMap<>();
         List<Rank> resultRanks = measureRanks(winningLotto);
         for (Rank targetRank : Rank.values()) {
-            int frequencyOfTargetRank = Collections.frequency(resultRanks, targetRank);
-            lottoResults.put(targetRank, frequencyOfTargetRank);
-            totalProfit = new Money(totalProfit.getMoney() + targetRank.getDividend() * frequencyOfTargetRank);
+            countFrequencyOfTargetRank(lottoResults, resultRanks, targetRank);
         }
         return lottoResults;
+    }
+
+    private void countFrequencyOfTargetRank(final Map<Rank, Integer> lottoResults, final List<Rank> resultRanks, final Rank targetRank) {
+        int frequencyOfTargetRank = Collections.frequency(resultRanks, targetRank);
+        lottoResults.put(targetRank, frequencyOfTargetRank);
+        totalProfit = new Money(totalProfit.getMoney() + targetRank.getDividend() * frequencyOfTargetRank);
     }
 
     private List<Rank> measureRanks(final WinningLotto winningLotto) {
