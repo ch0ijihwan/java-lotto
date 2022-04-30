@@ -61,24 +61,4 @@ public class Lotto {
                 .filter(lottoNumber -> comparisonLottoNumberList.stream().anyMatch(Predicate.isEqual(lottoNumber)))
                 .count();
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Lotto that = (Lotto) o;
-        return Objects.equals(lottoNumbers, that.lottoNumbers);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(lottoNumbers);
-    }
-
-    @Override
-    public String toString() {
-        return "LottoNumbers{" +
-                "lottoNumbers=" + lottoNumbers +
-                '}';
-    }
 }
