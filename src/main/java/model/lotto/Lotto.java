@@ -1,4 +1,6 @@
-package model;
+package model.lotto;
+
+import model.vo.LottoNumber;
 
 import java.util.*;
 import java.util.function.Predicate;

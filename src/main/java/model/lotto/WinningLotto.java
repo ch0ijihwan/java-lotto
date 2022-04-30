@@ -1,4 +1,7 @@
-package model;
+package model.lotto;
+
+import model.vo.LottoNumber;
+import model.vo.Rank;
 
 public class WinningLotto {
 

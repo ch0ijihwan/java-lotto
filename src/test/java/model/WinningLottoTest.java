@@ -1,5 +1,9 @@
 package model;
 
+import model.lotto.Lotto;
+import model.lotto.WinningLotto;
+import model.vo.LottoNumber;
+import model.vo.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

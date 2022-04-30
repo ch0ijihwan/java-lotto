@@ -1,4 +1,4 @@
-package model;
+package model.vo;
 
 import java.util.Arrays;
 import java.util.Comparator;

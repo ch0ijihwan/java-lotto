@@ -1,4 +1,4 @@
-package model;
+package model.vo;
 
 import java.util.Map;
 import java.util.Objects;

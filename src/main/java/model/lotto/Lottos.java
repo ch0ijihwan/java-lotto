@@ -1,4 +1,7 @@
-package model;
+package model.lotto;
+
+import model.Money;
+import model.vo.Rank;
 
 import java.util.Collections;
 import java.util.HashMap;

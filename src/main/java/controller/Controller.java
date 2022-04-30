@@ -1,6 +1,10 @@
 package controller;
 
 import model.*;
+import model.lotto.Lotto;
+import model.lotto.Lottos;
+import model.lotto.WinningLotto;
+import model.vo.LottoNumber;
 import view.input.Input;
 import view.output.Display;
 

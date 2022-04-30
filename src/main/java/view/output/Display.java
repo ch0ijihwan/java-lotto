@@ -1,7 +1,7 @@
 package view.output;
 
-import model.Lotto;
-import model.Rank;
+import model.lotto.Lotto;
+import model.vo.Rank;
 
 import java.util.List;
 import java.util.Map;
