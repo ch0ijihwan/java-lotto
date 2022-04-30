@@ -13,7 +13,7 @@ public class Lottos {
     private Money totalProfit = new Money(0);
 
     public Lottos(final Money money) {
-        lottos = addAutoLotto(money.getChangeToBuyLotto());
+        lottos = addAutoLotto(money.getChanceToBuyLotto());
     }
 
     private List<Lotto> addAutoLotto(final int numberOfChance) {

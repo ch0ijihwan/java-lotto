@@ -34,7 +34,7 @@ class MoneyTest {
         int expect = 10;
 
         //when
-        int actual = money.getChangeToBuyLotto();
+        int actual = money.getChanceToBuyLotto();
 
         //then
         assertThat(actual).isEqualTo(expect);

@@ -17,7 +17,7 @@ public class Money {
         }
     }
 
-    public int getChangeToBuyLotto() {
+    public int getChanceToBuyLotto() {
         return inputtedMoney / ONE_LOTTO_PRICE;
     }
 
