@@ -1,9 +1,6 @@
 package model;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -18,7 +15,7 @@ public class Lotto {
     private static List<Integer> createAllLottoNumbers() {
         return IntStream.rangeClosed(MIN_LOTTO_NUMBER_VALUE, MAX_LOTTO_NUMBER_VALUE)
                 .boxed()
-                .collect(Collectors.toUnmodifiableList());
+                .collect(Collectors.toList());
     }
 
     public static Lotto createAutoLottoNumbers() {
