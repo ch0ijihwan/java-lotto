@@ -1,6 +1,9 @@
 package model;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Rank {
     FIRST(6, 2_000_000_000),
@@ -30,6 +33,13 @@ public enum Rank {
 
     public int getDividend() {
         return dividend;
+    }
+
+    public static List<Rank> getSortedRanks() {
+        return Arrays.stream(values())
+                .sorted(Comparator.comparing(Rank::getDividend))
+                .filter(rank -> rank != Rank.LAST)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
 
