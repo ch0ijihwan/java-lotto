@@ -1,7 +1,7 @@
 package model;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -9,8 +9,9 @@ import java.util.stream.Stream;
 
 public class Lottos {
 
+    private static final int DEFAULT_MONEY = 0;
     private final List<Lotto> lottos;
-    private Money totalProfit = new Money(0);
+    private Money totalProfit = new Money(DEFAULT_MONEY);
 
     public Lottos(final Money money) {
         lottos = addAutoLotto(money.getChanceToBuyLotto());
@@ -27,11 +28,10 @@ public class Lottos {
     }
 
     public Map<Rank, Integer> countLottoRanks(final WinningLotto winningLotto) {
-        Map<Rank, Integer> lottoResults = new HashMap<>();
+        Map<Rank, Integer> lottoResults = new EnumMap<>(Rank.class);
         List<Rank> resultRanks = measureRanks(winningLotto);
         for (Rank targetRank : Rank.values()) {
-            int frequencyOfTargetRank = Collections.frequency(resultRanks, targetRank);
-            lottoResults.put(targetRank, frequencyOfTargetRank);
+            int frequencyOfTargetRank = countRankFrequency(lottoResults, resultRanks, targetRank);
             totalProfit = new Money(totalProfit.getMoney() + targetRank.getDividend() * frequencyOfTargetRank);
         }
         return lottoResults;
@@ -41,6 +41,12 @@ public class Lottos {
         return lottos.stream()
                 .map(winningLotto::measureRank)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    private int countRankFrequency(Map<Rank, Integer> lottoResults, List<Rank> resultRanks, Rank targetRank) {
+        int frequencyOfTargetRank = Collections.frequency(resultRanks, targetRank);
+        lottoResults.put(targetRank, frequencyOfTargetRank);
+        return frequencyOfTargetRank;
     }
 
     public List<Lotto> getLottos() {
