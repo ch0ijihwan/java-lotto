@@ -16,19 +16,19 @@ public class ConsoleInput implements Input {
 
     @Override
     public int inputMoney() {
-        System.out.print(INPUT_MONEY_MESSAGE);
+        System.out.printf(INPUT_MONEY_MESSAGE);
         return SCANNER.nextInt();
     }
 
     @Override
     public int inputBonusNumber() {
-        System.out.print(INPUT_BONUS_NUMBER_MESSAGE);
+        System.out.printf(INPUT_BONUS_NUMBER_MESSAGE);
         return SCANNER.nextInt();
     }
 
     @Override
     public List<Integer> inputWiningLotto() {
-        System.out.print(INPUT_WINNING_LOTTO_NUMBERS);
+        System.out.printf(INPUT_WINNING_LOTTO_NUMBERS);
         String[] winingLottoNumbers = SCANNER.next()
                 .split(LOTTO_NUMBER_DELIMITER);
         return Arrays.stream(winingLottoNumbers)
