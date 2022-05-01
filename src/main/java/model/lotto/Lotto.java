@@ -2,17 +2,21 @@ package model.lotto;
 
 import model.vo.LottoNumber;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Lotto {
+
     private static final int MIN_LOTTO_NUMBER_VALUE = 1;
     private static final int MAX_LOTTO_NUMBER_VALUE = 45;
     private static final int LOTTO_NUMBERS_SIZE = 6;
-    private final List<LottoNumber> lottoNumbers;
     private static final List<Integer> allLottoNumbers = createAllLottoNumbers();
+
+    private final List<LottoNumber> lottoNumbers;
 
     private static List<Integer> createAllLottoNumbers() {
         return IntStream.rangeClosed(MIN_LOTTO_NUMBER_VALUE, MAX_LOTTO_NUMBER_VALUE)
@@ -60,7 +64,12 @@ public class Lotto {
     public int measureMatchingLottoNumber(final Lotto otherLottoNumbers) {
         List<LottoNumber> comparisonLottoNumberList = otherLottoNumbers.getLottoNumbers();
         return (int) lottoNumbers.stream()
-                .filter(lottoNumber -> comparisonLottoNumberList.stream().anyMatch(Predicate.isEqual(lottoNumber)))
+                .filter(lottoNumber -> isAnyMatch(comparisonLottoNumberList, lottoNumber))
                 .count();
+    }
+
+    private boolean isAnyMatch(final List<LottoNumber> comparisonLottoNumberList, final LottoNumber lottoNumber) {
+        return comparisonLottoNumberList.stream()
+                .anyMatch(Predicate.isEqual(lottoNumber));
     }
 }
