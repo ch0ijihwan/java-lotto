@@ -22,7 +22,7 @@ class WinningLottoTest {
     void measureRank(final Lotto comparisonLotto, final Rank expect) {
         //given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        Lotto lotto = Lotto.createLottoNumbers(numbers);
+        Lotto lotto = Lotto.createManualLottoNumbers(numbers);
         LottoNumber bonusBallNumber = LottoNumber.valueOf(7);
 
         WinningLotto winningLotto = new WinningLotto(lotto, bonusBallNumber);
@@ -37,9 +37,9 @@ class WinningLottoTest {
     static Stream<Arguments> createMatchingLottoParameterProvider() {
         return Stream.of(
                 Arguments.of(
-                        Lotto.createLottoNumbers(List.of(1, 2, 3, 4, 5, 6)), Rank.FIRST,
-                        Lotto.createLottoNumbers(List.of(1, 2, 3, 4, 5, 7)), Rank.SECOND,
-                        Lotto.createLottoNumbers(List.of(1, 2, 3, 4, 5, 43)), Rank.THIRD)
+                        Lotto.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)), Rank.FIRST,
+                        Lotto.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 7)), Rank.SECOND,
+                        Lotto.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 43)), Rank.THIRD)
         );
     }
 }

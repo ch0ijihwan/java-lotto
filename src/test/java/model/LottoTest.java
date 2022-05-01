@@ -30,7 +30,7 @@ class LottoTest {
         );
 
         //when
-        Lotto actual = Lotto.createLottoNumbers(numbers);
+        Lotto actual = Lotto.createManualLottoNumbers(numbers);
 
         //then
         assertThat(actual).extracting("lottoNumbers")
@@ -42,7 +42,7 @@ class LottoTest {
     @MethodSource("createNumbersParameterProvider")
     void validateLottoNumbersSize(final List<Integer> numbers) {
         //then
-        assertThatIllegalArgumentException().isThrownBy(() -> Lotto.createLottoNumbers(numbers))
+        assertThatIllegalArgumentException().isThrownBy(() -> Lotto.createManualLottoNumbers(numbers))
                 .withMessage(String.format("로또 넘버는 %d 가지어야 합니다.", LOTTO_NUMBERS_SIZE));
     }
 
@@ -62,7 +62,7 @@ class LottoTest {
         List<Integer> numbers = List.of(1, 1, 3, 4, 5, 6);
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(() -> Lotto.createLottoNumbers(numbers));
+        assertThatIllegalArgumentException().isThrownBy(() -> Lotto.createManualLottoNumbers(numbers));
     }
 
     @Test
@@ -70,7 +70,7 @@ class LottoTest {
     void getLottoNumbers() {
         //given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        lotto = Lotto.createLottoNumbers(numbers);
+        lotto = Lotto.createManualLottoNumbers(numbers);
         List<LottoNumber> expect = List.of(
                 LottoNumber.valueOf(1), LottoNumber.valueOf(2), LottoNumber.valueOf(3),
                 LottoNumber.valueOf(4), LottoNumber.valueOf(5), LottoNumber.valueOf(6)
@@ -89,7 +89,7 @@ class LottoTest {
     void measureMatchingLottoNumber(final Lotto comparisonLottoNumbers, final int matchingCount) {
         //given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        Lotto lotto = Lotto.createLottoNumbers(numbers);
+        Lotto lotto = Lotto.createManualLottoNumbers(numbers);
         List<LottoNumber> expect = List.of(
                 LottoNumber.valueOf(1), LottoNumber.valueOf(2), LottoNumber.valueOf(3),
                 LottoNumber.valueOf(4), LottoNumber.valueOf(5), LottoNumber.valueOf(6)
@@ -105,9 +105,9 @@ class LottoTest {
     static Stream<Arguments> createMatchingLottoNumbersParameterProvider() {
         return Stream.of(
                 Arguments.of(
-                        Lotto.createLottoNumbers(List.of(1, 2, 3, 4, 5, 6)), 6,
-                        Lotto.createLottoNumbers(List.of(1, 45, 44, 43, 42, 41)), 1,
-                        Lotto.createLottoNumbers(List.of(1, 2, 3, 45, 44, 43)), 3)
+                        Lotto.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)), 6,
+                        Lotto.createManualLottoNumbers(List.of(1, 45, 44, 43, 42, 41)), 1,
+                        Lotto.createManualLottoNumbers(List.of(1, 2, 3, 45, 44, 43)), 3)
         );
     }
 }

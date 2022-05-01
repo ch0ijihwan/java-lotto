@@ -32,7 +32,7 @@ public class Lotto {
         return new Lotto(peekLottoNumbers);
     }
 
-    public static Lotto createLottoNumbers(final List<Integer> numbers) {
+    public static Lotto createManualLottoNumbers(final List<Integer> numbers) {
         return new Lotto(numbers);
     }
 

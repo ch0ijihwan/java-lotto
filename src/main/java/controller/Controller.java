@@ -26,7 +26,7 @@ public class Controller {
     }
 
     private WinningLotto inputWinningLotto() {
-        Lotto inputtedWinningLottoNumbers = Lotto.createLottoNumbers(input.inputWiningLotto());
+        Lotto inputtedWinningLottoNumbers = Lotto.createManualLottoNumbers(input.inputWiningLotto());
         LottoNumber inputtedBonusNumber = LottoNumber.valueOf(input.inputBonusNumber());
         return new WinningLotto(inputtedWinningLottoNumbers, inputtedBonusNumber);
     }

@@ -38,13 +38,13 @@ class LottosTest {
     void measureLottoRanks() {
         //given
         Lottos lottos = new Lottos(List.of(
-                Lotto.createLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
-                Lotto.createLottoNumbers(List.of(1, 2, 3, 4, 5, 7)),
-                Lotto.createLottoNumbers(List.of(1, 2, 3, 4, 5, 10)),
-                Lotto.createLottoNumbers(List.of(7, 8, 9, 10, 11, 12))
+                Lotto.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
+                Lotto.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 7)),
+                Lotto.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 10)),
+                Lotto.createManualLottoNumbers(List.of(7, 8, 9, 10, 11, 12))
         ));
 
-        WinningLotto winningLotto = new WinningLotto(Lotto.createLottoNumbers(List.of(1, 2, 3, 4, 5, 6)), LottoNumber.valueOf(7));
+        WinningLotto winningLotto = new WinningLotto(Lotto.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)), LottoNumber.valueOf(7));
 
         //when
         Map<Rank, Integer> lottoResults = lottos.countLottoRanks(winningLotto);
