@@ -19,7 +19,7 @@ public class Controller {
 
     public void run() {
         Money initialMoney = new Money(input.inputMoney());
-        Lottos lottos = new Lottos(initialMoney);
+        Lottos lottos = new Lottos(initialMoney.getChanceToBuyLotto());
         output.displayDetailsOfLottoPurchased(lottos.getLottos());
         WinningLotto winningLotto = inputWinningLotto();
         displayTotalResultOfLottoGames(initialMoney, lottos, winningLotto);
@@ -33,6 +33,6 @@ public class Controller {
 
     private void displayTotalResultOfLottoGames(final Money initialMoney, final Lottos lottos, final WinningLotto winningLotto) {
         output.displayLottoTotalResult(lottos.countLottoRanks(winningLotto));
-        output.displayRateOfProfit(initialMoney.calculateRateOfProfit(lottos.getToTalProfit()));
+//        output.displayRateOfProfit(initialMoney.calculateRateOfProfit(lottos.getToTalProfit()));
     }
 }

@@ -20,11 +20,11 @@ class LottosTest {
     @DisplayName("입력 받은 로또 구매 횟수에 따라, 로또를 생성한다.")
     void crate() {
         //given
-        Money money = new Money(8000);
+        int input = 8;
         int expectSize = 8;
 
         //when
-        Lottos lottos = new Lottos(money);
+        Lottos lottos = new Lottos(input);
 
         //then
         assertThat(lottos).extracting("lottos")
@@ -51,10 +51,10 @@ class LottosTest {
 
         //then
         assertAll(
-                () -> assertThat(lottoResults.containsKey(Rank.FIFTH)).isTrue(),
-                () -> assertThat(lottoResults.containsKey(Rank.SECOND)).isTrue(),
-                () -> assertThat(lottoResults.containsKey(Rank.THIRD)).isTrue(),
-                () -> assertThat(lottoResults.containsKey(Rank.LAST)).isTrue()
+                () -> assertThat(lottoResults).containsKey(Rank.FIFTH),
+                () -> assertThat(lottoResults).containsKey(Rank.SECOND),
+                () -> assertThat(lottoResults).containsKey(Rank.THIRD),
+                () -> assertThat(lottoResults).containsKey(Rank.LAST)
         );
     }
 }
