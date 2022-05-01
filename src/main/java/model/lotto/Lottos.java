@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Lottos {
+
     private final List<Lotto> lottos;
 
     public Lottos(final int numberOfCanBuyLotto) {
