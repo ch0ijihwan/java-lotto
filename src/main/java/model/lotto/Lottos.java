@@ -3,10 +3,7 @@ package model.lotto;
 import model.Money;
 import model.vo.Rank;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,7 +28,7 @@ public class Lottos {
     }
 
     public Map<Rank, Integer> countLottoRanks(final WinningLotto winningLotto) {
-        Map<Rank, Integer> lottoResults = new HashMap<>();
+        Map<Rank, Integer> lottoResults = new EnumMap<>(Rank.class);
         List<Rank> resultRanks = measureRanks(winningLotto);
         for (Rank targetRank : Rank.values()) {
             countFrequencyOfTargetRank(lottoResults, resultRanks, targetRank);
