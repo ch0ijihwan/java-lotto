@@ -1,6 +1,5 @@
 package model.lotto;
 
-import model.Money;
 import model.vo.Rank;
 
 import java.util.Collections;
@@ -11,9 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Lottos {
-    private static final int DEFAULT_MONEY_VALUE = 0;
     private final List<Lotto> lottos;
-    private final Money totalProfit = new Money(DEFAULT_MONEY_VALUE);
 
     public Lottos(final int numberOfCanBuyLotto) {
         lottos = addAutoLotto(numberOfCanBuyLotto);
@@ -51,9 +48,5 @@ public class Lottos {
 
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);
-    }
-
-    public Money getToTalProfit() {
-        return totalProfit;
     }
 }

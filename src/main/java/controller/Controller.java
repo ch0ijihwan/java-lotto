@@ -5,8 +5,11 @@ import model.lotto.Lotto;
 import model.lotto.Lottos;
 import model.lotto.WinningLotto;
 import model.vo.LottoNumber;
+import model.vo.Rank;
 import view.input.Input;
 import view.output.Display;
+
+import java.util.Map;
 
 public class Controller {
     private final Input input;
@@ -31,8 +34,9 @@ public class Controller {
         return new WinningLotto(inputtedWinningLottoNumbers, inputtedBonusNumber);
     }
 
-    private void displayTotalResultOfLottoGames(final Money initialMoney, final Lottos lottos, final WinningLotto winningLotto) {
-        output.displayLottoTotalResult(lottos.countLottoRanks(winningLotto));
-//        output.displayRateOfProfit(initialMoney.calculateRateOfProfit(lottos.getToTalProfit()));
+    private void displayTotalResultOfLottoGames(final Money money, final Lottos lottos, final WinningLotto winningLotto) {
+        Map<Rank, Integer> resultTotalRanks = lottos.countLottoRanks(winningLotto);
+        output.displayLottoTotalResult(resultTotalRanks);
+        output.displayRateOfProfit(money.calculateRateOfProfit(resultTotalRanks));
     }
 }

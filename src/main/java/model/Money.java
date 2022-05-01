@@ -1,14 +1,25 @@
 package model;
 
+import model.vo.Rank;
+
+import java.util.Collections;
+import java.util.Map;
+
 public class Money {
 
-    private static final int ONE_LOTTO_PRICE = 1000;
-    private final int inputtedMoney;
     private static final int MINIMUM_VALUE_OF_MONEY = 0;
+    private static final int NO_REST = 0;
+    private static final int ONE_LOTTO_PRICE = 1000;
+    private int moneyValue;
 
-    public Money(final int inputtedMoney) {
-        validateRangeOfMoney(inputtedMoney);
-        this.inputtedMoney = inputtedMoney;
+    public Money(final int moneyValue) {
+        validate(moneyValue);
+        this.moneyValue = moneyValue;
+    }
+
+    private void validate(final int moneyValue) {
+        validateRangeOfMoney(moneyValue);
+        validateAmountOfMoney(moneyValue);
     }
 
     private void validateRangeOfMoney(final int inputtedMoney) {
@@ -17,15 +28,21 @@ public class Money {
         }
     }
 
+    private void validateAmountOfMoney(final int inputtedMoney) {
+        if (inputtedMoney % ONE_LOTTO_PRICE != NO_REST) {
+            throw new IllegalArgumentException(String.format("입력 금액은 %d 의 배수여야 합니다.", ONE_LOTTO_PRICE));
+        }
+    }
+
     public int getChanceToBuyLotto() {
-        return inputtedMoney / ONE_LOTTO_PRICE;
+        return moneyValue / ONE_LOTTO_PRICE;
     }
 
-    public int getMoney() {
-        return inputtedMoney;
-    }
-
-    public double calculateRateOfProfit(final Money totalMoney) {
-        return (double) totalMoney.getMoney() / getMoney();
+    public double calculateRateOfProfit(final Map<Rank, Integer> resultTotalRanks) {
+        double profit = Collections.unmodifiableSet(resultTotalRanks.keySet())
+                .stream()
+                .mapToInt(targetRank -> targetRank.getDividend() * resultTotalRanks.get(targetRank))
+                .sum();
+        return profit / moneyValue;
     }
 }
