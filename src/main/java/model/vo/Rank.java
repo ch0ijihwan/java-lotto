@@ -22,7 +22,8 @@ public enum Rank {
 
     public static Rank valueOf(final int matchingLottoNumber, final boolean matchBonus) {
         return Arrays.stream(values())
-                .filter(rank -> rank.getMatchingLottoNumber() == matchingLottoNumber && (!rank.equals(SECOND) || matchBonus))
+                .filter(rank -> rank.getMatchingLottoNumber() == matchingLottoNumber)
+                .filter(rank -> !rank.equals(SECOND) || matchBonus)
                 .findFirst()
                 .orElse(LAST);
     }
