@@ -5,11 +5,12 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
 
     private static final int MIN_LOTTO_NUMBER_VALUE = 1;
     private static final int MAX_LOTTO_NUMBER_VALUE = 45;
-    private static final Map<Integer, LottoNumber> lottoNumbers = createLottoNumbers();
+    private static final Map<Integer, LottoNumber> CACHE_LOTTO_NUMBERS = createLottoNumbers();
+
     private final int value;
 
     private static Map<Integer, LottoNumber> createLottoNumbers() {
@@ -24,7 +25,7 @@ public class LottoNumber {
 
     public static LottoNumber valueOf(final int value) {
         validateRange(value);
-        return lottoNumbers.get(value);
+        return CACHE_LOTTO_NUMBERS.get(value);
     }
 
     private static void validateRange(final int number) {
@@ -35,6 +36,11 @@ public class LottoNumber {
 
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public int compareTo(LottoNumber o) {
+        return Integer.compare(this.value, o.value);
     }
 
     @Override
