@@ -2,32 +2,31 @@ package model.lotto;
 
 import model.vo.LottoNumber;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Lotto {
 
+    private static final Random RANDOM = new Random();
     private static final int MIN_LOTTO_NUMBER_VALUE = 1;
     private static final int MAX_LOTTO_NUMBER_VALUE = 45;
     private static final int LOTTO_NUMBERS_SIZE = 6;
-    private static final List<Integer> allLottoNumbers = createAllLottoNumbers();
+    private static final Set<Integer> RANDOM_LOTTO_NUMBER_VALUES = createRandomLottoNumberValues();
 
     private final List<LottoNumber> lottoNumbers;
 
-    private static List<Integer> createAllLottoNumbers() {
-        return IntStream.rangeClosed(MIN_LOTTO_NUMBER_VALUE, MAX_LOTTO_NUMBER_VALUE)
-                .boxed()
-                .collect(Collectors.toList());
+    private static Set<Integer> createRandomLottoNumberValues() {
+        return Stream.generate(() -> RANDOM.nextInt(MAX_LOTTO_NUMBER_VALUE) + MIN_LOTTO_NUMBER_VALUE)
+                .limit(LOTTO_NUMBERS_SIZE)
+                .collect(Collectors.toUnmodifiableSet());
     }
 
     public static Lotto createAutoLottoNumbers() {
-        Collections.shuffle(allLottoNumbers);
-        List<Integer> peekLottoNumbers = allLottoNumbers.stream()
-                .limit(LOTTO_NUMBERS_SIZE)
+        List<Integer> peekLottoNumbers = RANDOM_LOTTO_NUMBER_VALUES.stream()
                 .collect(Collectors.toUnmodifiableList());
         return new Lotto(peekLottoNumbers);
     }
@@ -41,7 +40,7 @@ public class Lotto {
         validateDuplication(numbers);
         this.lottoNumbers = numbers.stream()
                 .map(LottoNumber::valueOf)
-                .sorted(Comparator.comparingInt(LottoNumber::getValue))
+                .sorted()
                 .collect(Collectors.toUnmodifiableList());
     }
 
@@ -53,7 +52,7 @@ public class Lotto {
 
     private void validateDuplication(final List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("로또 넘버는 중복 될 수 업습니다.");
+            throw new IllegalArgumentException("로또 넘버는 중복 될 수 없습니다.");
         }
     }
 
