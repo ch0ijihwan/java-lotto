@@ -3,7 +3,6 @@ package model.lotto;
 import model.vo.Rank;
 
 import java.util.Collections;
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -28,17 +27,13 @@ public class Lottos {
     }
 
     public Map<Rank, Integer> countLottoRanks(final WinningLotto winningLotto) {
-        Map<Rank, Integer> lottoResults = new EnumMap<>(Rank.class);
-        List<Rank> resultRanks = measureRanks(winningLotto);
-        for (Rank targetRank : Rank.values()) {
-            countFrequencyOfTargetRank(lottoResults, resultRanks, targetRank);
-        }
-        return lottoResults;
+        return lottos.stream()
+                .map(winningLotto::measureRank)
+                .collect(Collectors.toUnmodifiableMap(rank -> rank, rank -> getFrequency(winningLotto, rank)));
     }
 
-    private void countFrequencyOfTargetRank(final Map<Rank, Integer> lottoResults, final List<Rank> resultRanks, final Rank targetRank) {
-        int frequencyOfTargetRank = Collections.frequency(resultRanks, targetRank);
-        lottoResults.put(targetRank, frequencyOfTargetRank);
+    private int getFrequency(final WinningLotto winningLotto, final Rank rank) {
+        return Collections.frequency(measureRanks(winningLotto), rank);
     }
 
     private List<Rank> measureRanks(final WinningLotto winningLotto) {
