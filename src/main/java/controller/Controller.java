@@ -15,9 +15,9 @@ public class Controller {
     private final Input input;
     private final Display output;
 
-    public Controller(Input input, Display output) {
+    public Controller(Input input, Display display) {
         this.input = input;
-        this.output = output;
+        this.output = display;
     }
 
     public void run() {
