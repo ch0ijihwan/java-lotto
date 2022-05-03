@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Map;
 
+import static model.vo.Rank.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -43,6 +44,7 @@ class LottosTest {
                 Lotto.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 10)),
                 Lotto.createManualLottoNumbers(List.of(7, 8, 9, 10, 11, 12))
         ));
+        int expectFrequencyOfRank = 1;
 
         WinningLotto winningLotto = new WinningLotto(Lotto.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)), LottoNumber.valueOf(7));
 
@@ -51,10 +53,10 @@ class LottosTest {
 
         //then
         assertAll(
-                () -> assertThat(lottoResults).containsKey(Rank.FIFTH),
-                () -> assertThat(lottoResults).containsKey(Rank.SECOND),
-                () -> assertThat(lottoResults).containsKey(Rank.THIRD),
-                () -> assertThat(lottoResults).containsKey(Rank.LAST)
+                () -> assertThat(lottoResults).containsEntry(FIRST, expectFrequencyOfRank),
+                () -> assertThat(lottoResults).containsEntry(SECOND, expectFrequencyOfRank),
+                () -> assertThat(lottoResults).containsEntry(THIRD, expectFrequencyOfRank),
+                () -> assertThat(lottoResults).containsEntry(LAST, expectFrequencyOfRank)
         );
     }
 }
