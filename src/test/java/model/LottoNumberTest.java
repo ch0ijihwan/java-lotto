@@ -14,6 +14,20 @@ class LottoNumberTest {
     private static final int MIN_LOTTO_NUMBER_VALUE = 1;
     private static final int MAX_LOTTO_NUMBER_VALUE = 45;
 
+    @Test
+    @DisplayName("같은 값을 가지면 같은 객체로 간주한다. equals 테스트")
+    void equals() {
+        //given
+        int input = 1;
+        int expect = 1;
+
+        //when
+        LottoNumber actual = LottoNumber.valueOf(input);
+
+        //then
+        assertThat(actual).isEqualTo(LottoNumber.valueOf(expect));
+    }
+
     @ParameterizedTest
     @DisplayName("입력 받은 값이 1 ~ 45 내에 있는 숫자가 아니면 예외처리를 반환한다.")
     @ValueSource(ints = {0, 46})
