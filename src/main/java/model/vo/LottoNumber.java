@@ -9,18 +9,14 @@ public class LottoNumber implements Comparable<LottoNumber> {
 
     private static final int MIN_LOTTO_NUMBER_VALUE = 1;
     private static final int MAX_LOTTO_NUMBER_VALUE = 45;
-    private static final Map<Integer, LottoNumber> CACHE_LOTTO_NUMBERS = createLottoNumbers();
+    private static final Map<Integer, LottoNumber> CACHE_LOTTO_NUMBERS = createCacheForLottoNumbers();
 
     private final int value;
 
-    private static Map<Integer, LottoNumber> createLottoNumbers() {
+    private static Map<Integer, LottoNumber> createCacheForLottoNumbers() {
         return IntStream.rangeClosed(MIN_LOTTO_NUMBER_VALUE, MAX_LOTTO_NUMBER_VALUE)
                 .boxed()
                 .collect(Collectors.toUnmodifiableMap(key -> key, LottoNumber::new));
-    }
-
-    private LottoNumber(final int number) {
-        this.value = number;
     }
 
     public static LottoNumber valueOf(final int value) {
@@ -31,7 +27,12 @@ public class LottoNumber implements Comparable<LottoNumber> {
     private static void validateRange(final int number) {
         if (number < MIN_LOTTO_NUMBER_VALUE || number > MAX_LOTTO_NUMBER_VALUE) {
             throw new IllegalArgumentException(String.format("로또 넘버를 생성 할 수 없습니다. 로또 넘버는 %d ~ %d 사이의 숫자여야 합니다.", MIN_LOTTO_NUMBER_VALUE, MAX_LOTTO_NUMBER_VALUE));
+
         }
+    }
+
+    private LottoNumber(final int number) {
+        this.value = number;
     }
 
     public int getValue() {
