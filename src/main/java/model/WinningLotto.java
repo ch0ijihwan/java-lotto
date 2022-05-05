@@ -1,5 +1,6 @@
-package model.lotto;
+package model;
 
+import model.vo.Lotto;
 import model.vo.LottoNumber;
 import model.vo.Rank;
 

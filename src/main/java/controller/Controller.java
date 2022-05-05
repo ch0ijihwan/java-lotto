@@ -1,9 +1,9 @@
 package controller;
 
 import model.*;
-import model.lotto.Lotto;
-import model.lotto.Lottos;
-import model.lotto.WinningLotto;
+import model.vo.Lotto;
+import model.Lottos;
+import model.WinningLotto;
 import model.vo.LottoNumber;
 import model.vo.Rank;
 import view.input.Input;

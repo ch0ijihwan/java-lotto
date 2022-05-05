@@ -2,7 +2,6 @@ package model;
 
 import model.vo.Rank;
 
-import java.util.Collections;
 import java.util.Map;
 
 public class Money {
@@ -10,7 +9,7 @@ public class Money {
     private static final int MINIMUM_VALUE_OF_MONEY = 0;
     private static final int NO_REST = 0;
     private static final int ONE_LOTTO_PRICE = 1000;
-    private int moneyValue;
+    private final int moneyValue;
 
     public Money(final int moneyValue) {
         validate(moneyValue);
@@ -39,7 +38,7 @@ public class Money {
     }
 
     public double calculateRateOfProfit(final Map<Rank, Integer> resultTotalRanks) {
-        double profit = Collections.unmodifiableSet(resultTotalRanks.keySet())
+        double profit = resultTotalRanks.keySet()
                 .stream()
                 .mapToInt(targetRank -> targetRank.getDividend() * resultTotalRanks.get(targetRank))
                 .sum();

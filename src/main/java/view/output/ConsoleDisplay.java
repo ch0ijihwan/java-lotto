@@ -1,6 +1,6 @@
 package view.output;
 
-import model.lotto.Lotto;
+import model.vo.Lotto;
 import model.vo.LottoNumber;
 import model.vo.Rank;
 

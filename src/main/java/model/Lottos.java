@@ -1,10 +1,9 @@
-package model.lotto;
+package model;
 
+import model.vo.Lotto;
 import model.vo.Rank;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
