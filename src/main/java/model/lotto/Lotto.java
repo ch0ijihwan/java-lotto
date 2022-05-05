@@ -21,6 +21,7 @@ public class Lotto {
 
     private static Set<Integer> createRandomLottoNumberValues() {
         return Stream.generate(() -> RANDOM.nextInt(MAX_LOTTO_NUMBER_VALUE) + MIN_LOTTO_NUMBER_VALUE)
+                .distinct()
                 .limit(LOTTO_NUMBERS_SIZE)
                 .collect(Collectors.toUnmodifiableSet());
     }
