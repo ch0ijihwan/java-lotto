@@ -1,9 +1,9 @@
 package controller;
 
-import model.*;
-import model.vo.Lotto;
 import model.Lottos;
+import model.Money;
 import model.WinningLotto;
+import model.vo.Lotto;
 import model.vo.LottoNumber;
 import model.vo.Profit;
 import model.vo.Rank;
@@ -13,10 +13,11 @@ import view.output.Display;
 import java.util.Map;
 
 public class Controller {
+
     private final Input input;
     private final Display output;
 
-    public Controller(Input input, Display display) {
+    public Controller(final Input input, final Display display) {
         this.input = input;
         this.output = display;
     }
