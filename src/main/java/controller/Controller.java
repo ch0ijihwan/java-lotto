@@ -5,6 +5,7 @@ import model.vo.Lotto;
 import model.Lottos;
 import model.WinningLotto;
 import model.vo.LottoNumber;
+import model.vo.Profit;
 import model.vo.Rank;
 import view.input.Input;
 import view.output.Display;
@@ -37,6 +38,7 @@ public class Controller {
     private void displayTotalResultOfLottoGames(final Money money, final Lottos lottos, final WinningLotto winningLotto) {
         Map<Rank, Integer> resultTotalRanks = lottos.countLottoRanks(winningLotto);
         output.displayLottoTotalResult(resultTotalRanks);
-        output.displayRateOfProfit(money.calculateRateOfProfit(resultTotalRanks));
+        Profit profit = new Profit(money, resultTotalRanks);
+        output.displayRateOfProfit(profit.getRateOfProfit());
     }
 }

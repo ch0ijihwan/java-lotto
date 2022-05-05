@@ -1,12 +1,8 @@
 package model;
 
-import model.vo.Rank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.EnumMap;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -39,22 +35,6 @@ class MoneyTest {
 
         //when
         int actual = money.getChanceToBuyLotto();
-
-        //then
-        assertThat(actual).isEqualTo(expect);
-    }
-
-    @Test
-    @DisplayName("수익률을 반환한다.")
-    void calculateRateOfProfit() {
-        //given
-        double expect = 6;
-        Map<Rank, Integer> resultTotalRanks = new EnumMap<>(Rank.class);
-        resultTotalRanks.put(Rank.FIFTH, 2);
-        resultTotalRanks.put(Rank.FOURTH, 1);
-
-        //when
-        double actual = money.calculateRateOfProfit(resultTotalRanks);
 
         //then
         assertThat(actual).isEqualTo(expect);

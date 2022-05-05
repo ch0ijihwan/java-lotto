@@ -1,9 +1,5 @@
 package model;
 
-import model.vo.Rank;
-
-import java.util.Map;
-
 public class Money {
 
     private static final int MINIMUM_VALUE_OF_MONEY = 0;
@@ -37,11 +33,7 @@ public class Money {
         return moneyValue / ONE_LOTTO_PRICE;
     }
 
-    public double calculateRateOfProfit(final Map<Rank, Integer> resultTotalRanks) {
-        double profit = resultTotalRanks.keySet()
-                .stream()
-                .mapToInt(targetRank -> targetRank.getDividend() * resultTotalRanks.get(targetRank))
-                .sum();
-        return profit / moneyValue;
+    public int getMoneyValue() {
+        return moneyValue;
     }
 }
