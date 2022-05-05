@@ -1,7 +1,7 @@
 package controller;
 
 import model.Lottos;
-import model.Money;
+import model.vo.Money;
 import model.WinningLotto;
 import model.vo.Lotto;
 import model.vo.LottoNumber;

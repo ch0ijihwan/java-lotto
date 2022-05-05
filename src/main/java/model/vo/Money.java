@@ -1,4 +1,6 @@
-package model;
+package model.vo;
+
+import java.util.Objects;
 
 public class Money {
 
@@ -35,5 +37,18 @@ public class Money {
 
     public int getMoneyValue() {
         return moneyValue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Money money = (Money) o;
+        return moneyValue == money.moneyValue;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(moneyValue);
     }
 }

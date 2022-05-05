@@ -1,8 +1,7 @@
 package model.vo;
 
-import model.Money;
-
 import java.util.Map;
+import java.util.Objects;
 
 public class Profit {
 
@@ -23,5 +22,18 @@ public class Profit {
 
     public double getRateOfProfit() {
         return profit / initialMoney.getMoneyValue();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Profit profit1 = (Profit) o;
+        return Double.compare(profit1.profit, profit) == 0 && Objects.equals(initialMoney, profit1.initialMoney);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(profit, initialMoney);
     }
 }
