@@ -6,5 +6,11 @@ public interface Input {
     int inputMoney();
 
     int inputBonusNumber();
+
+    int inputCountOfManualLotto();
+
+    List<Integer> inputManualLottoNumbers();
+
     List<Integer> inputWiningLotto();
+
 }

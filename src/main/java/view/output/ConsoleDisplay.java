@@ -18,6 +18,7 @@ public class ConsoleDisplay implements Display {
     private static final String MULTI_BARS = "----------";
     private static final String LOTTO_FORMAT = "[%s] %n";
     private static final String LOTTO_DELIMITER = ",";
+    private static final String INPUT_MANUAL_LOTTO_NUMBERS_MESSAGE = "수동으로 구매할 번호를 입력해 주세요";
 
     @Override
     public void displayDetailsOfLottoPurchased(final List<Lotto> lottoList) {
@@ -38,7 +39,7 @@ public class ConsoleDisplay implements Display {
         System.out.println(MULTI_BARS);
         List<Rank> sortedRanks = Rank.getSortedRanks();
         for (Rank rank : sortedRanks) {
-            displayLottoResult(rank, lottoGameResult.get(rank));
+            displayLottoResult(rank, lottoGameResult.getOrDefault(rank, 0));
         }
     }
 
@@ -53,5 +54,10 @@ public class ConsoleDisplay implements Display {
     @Override
     public void displayRateOfProfit(final double profit) {
         System.out.printf(DISPLAY_RATE_OF_PROFIT_MESSAGE, profit);
+    }
+
+    @Override
+    public void displayMessageAboutInputManualLottoNumbers() {
+        System.out.println(INPUT_MANUAL_LOTTO_NUMBERS_MESSAGE);
     }
 }
