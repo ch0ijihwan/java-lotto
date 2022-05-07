@@ -5,8 +5,7 @@ import java.util.Objects;
 public class Money {
 
     private static final int MINIMUM_VALUE_OF_MONEY = 0;
-    private static final int NO_REST = 0;
-    private static final int ONE_LOTTO_PRICE = 1000;
+
     private final int moneyValue;
 
     public Money(final int moneyValue) {
@@ -16,7 +15,6 @@ public class Money {
 
     private void validate(final int moneyValue) {
         validateRangeOfMoney(moneyValue);
-        validateAmountOfMoney(moneyValue);
     }
 
     private void validateRangeOfMoney(final int inputtedMoney) {
@@ -25,18 +23,16 @@ public class Money {
         }
     }
 
-    private void validateAmountOfMoney(final int inputtedMoney) {
-        if (inputtedMoney % ONE_LOTTO_PRICE != NO_REST) {
-            throw new IllegalArgumentException(String.format("입력 금액은 %d 의 배수여야 합니다.", ONE_LOTTO_PRICE));
-        }
-    }
-
-    public int getChanceToBuyLotto() {
-        return moneyValue / ONE_LOTTO_PRICE;
+    public int getChanceToBuyLotto(final int lottoPrice) {
+        return moneyValue / lottoPrice;
     }
 
     public int getMoneyValue() {
         return moneyValue;
+    }
+
+    public boolean isPerfectlyDivisible(final int oneLottoPrice) {
+        return moneyValue % oneLottoPrice == 0;
     }
 
     @Override
