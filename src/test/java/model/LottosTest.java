@@ -21,23 +21,6 @@ import static org.junit.jupiter.params.provider.Arguments.of;
 class LottosTest {
 
     @Test
-    @DisplayName("입력 받은 로또 구매 횟수에 따라, 로또를 생성한다.")
-    void crate() {
-        //given
-        int input = 8;
-        int expectSize = 8;
-
-        //when
-        Lottos lottos = new Lottos(input);
-
-        //then
-        assertThat(lottos).extracting("lottos")
-                .asList()
-                .size()
-                .isEqualTo(expectSize);
-    }
-
-    @Test
     @DisplayName("로또의 당첨 등수들을 가진 Map 을 반환한다.")
     void measureLottoRanks() {
         //given

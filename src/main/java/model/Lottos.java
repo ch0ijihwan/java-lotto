@@ -8,30 +8,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Lottos {
 
     private final List<Lotto> lottos;
 
-    public Lottos(final int numberOfCanBuyLotto) {
-        lottos = addAutoLotto(numberOfCanBuyLotto);
-    }
-
-    private List<Lotto> addAutoLotto(final int numberOfChance) {
-        return Stream.generate(Lotto::createAutoLottoNumbers)
-                .limit(numberOfChance)
-                .collect(Collectors.toUnmodifiableList());
-    }
-
-    public Lottos(final List<Lotto> lottos) {
+    Lottos(final List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
     public Map<Rank, Integer> countLottoRanks(final WinningLotto winningLotto) {
         return lottos.stream()
                 .map(winningLotto::measureRank)
-                .collect(Collectors.toUnmodifiableMap(rank -> rank, rank -> getFrequency(winningLotto, rank)));
+                .collect(Collectors.toUnmodifiableMap(rank -> rank, rank -> getFrequency(winningLotto, rank), (rank1, rank2) -> rank1));
     }
 
     private int getFrequency(final WinningLotto winningLotto, final Rank rank) {
