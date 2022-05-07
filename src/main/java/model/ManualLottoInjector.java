@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ManualLottoInjector {
-    private final int manualCount;
+    private int manualCount;
     private final List<Lotto> manualLottos = new ArrayList<>();
 
     public ManualLottoInjector(final int manualCount) {
@@ -20,6 +20,7 @@ public class ManualLottoInjector {
 
     public void add(final List<Integer> inputLottoNumbers) {
         manualLottos.add(Lotto.createManualLottoNumbers(inputLottoNumbers));
+        manualCount = manualCount - 1;
     }
 
     public List<Lotto> getManualLottos() {
