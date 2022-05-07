@@ -1,15 +1,11 @@
 package controller;
 
-import model.Lottos;
-import model.vo.Money;
-import model.WinningLotto;
-import model.vo.Lotto;
-import model.vo.LottoNumber;
-import model.vo.Profit;
-import model.vo.Rank;
+import model.*;
+import model.vo.*;
 import view.input.Input;
 import view.output.Display;
 
+import java.util.List;
 import java.util.Map;
 
 public class Controller {
@@ -24,11 +20,38 @@ public class Controller {
 
     public void run() {
         Money initialMoney = new Money(input.inputMoney());
-        Lottos lottos = new Lottos(initialMoney.getChanceToBuyLotto());
+        LottoVendingMachine lottoVendingMachine = new LottoVendingMachine(initialMoney, input.inputCountOfManualLotto());
+        ManualLottoInjector manualLottoInjector = inputManualLottoNumbers(lottoVendingMachine.getCountOfManualLotto());
+        Lottos lottos = processLottos(lottoVendingMachine, manualLottoInjector);
+        processLottoResult(initialMoney, lottos);
+    }
+
+    private ManualLottoInjector inputManualLottoNumbers(final int countOfManualLotto) {
+        ManualLottoInjector manualLottoInjector = new ManualLottoInjector(countOfManualLotto);
+        while (manualLottoInjector.getManualRemainingCount() > 0) {
+            manualLottoInjector.add(input.inputManualLottoNumbers());
+        }
+        return manualLottoInjector;
+    }
+
+    private Lottos processLottos(final LottoVendingMachine lottoVendingMachine, final ManualLottoInjector manualLottoInjector) {
+        Lottos lottos = createLottos(lottoVendingMachine, manualLottoInjector);
         output.displayDetailsOfLottoPurchased(lottos.getLottos());
+        return lottos;
+    }
+
+    private Lottos createLottos(final LottoVendingMachine lottoVendingMachine, final ManualLottoInjector manualLottoInjector) {
+        int countOfAutoLotto = lottoVendingMachine.getCountOfAutoLotto();
+        List<Lotto> manualLottos = manualLottoInjector.getManualLottos();
+        return new LottoTicket(countOfAutoLotto, manualLottos).getLottos();
+    }
+
+    private void processLottoResult(final Money initialMoney, final Lottos lottos) {
         WinningLotto winningLotto = inputWinningLotto();
         displayTotalResultOfLottoGames(initialMoney, lottos, winningLotto);
+        output.displayMessageAboutInputManualLottoNumbers();
     }
+
 
     private WinningLotto inputWinningLotto() {
         Lotto inputtedWinningLottoNumbers = Lotto.createManualLottoNumbers(input.inputWiningLotto());
