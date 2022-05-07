@@ -26,6 +26,6 @@ public class LottoVendingMachine {
     }
 
     public int getCountOfAutoLotto() {
-        return inputtedMoney.getChanceToBuyLotto() - countOfManualLotto;
+        return inputtedMoney.getChanceToBuyLotto(ONE_LOTTO_PRICE) - countOfManualLotto;
     }
 }
