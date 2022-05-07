@@ -1,38 +1,34 @@
 package model;
 
 import model.vo.Lotto;
-import model.vo.Money;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoTicket {
-    private final Money money;
-    private final int numberOfManualLotto;
-    private final List<Lotto> manualLottos;
+    private final Lottos totalLottos;
 
-    public LottoTicket(final Money money, final int numberOfManualLotto, final List<List<Integer>> numbers) {
-        this.money = money;
-        this.numberOfManualLotto = numberOfManualLotto;
-        this.manualLottos = createManualLottos(numbers);
+    public LottoTicket(final int countOfAutoLotto, final List<Lotto> manualLottos) {
+        List<Lotto> autoLottos = generateAutoLottos(countOfAutoLotto);
+        List<Lotto> joinedLottos = joinLottos(manualLottos, autoLottos);
+        this.totalLottos = new Lottos(joinedLottos);
     }
 
-    private List<Lotto> createManualLottos(final List<List<Integer>> numbers) {
-        return numbers.stream()
-                .map(Lotto::createManualLottoNumbers)
+    private List<Lotto> generateAutoLottos(final int countOfAutoLotto) {
+        return Stream.generate(Lotto::createAutoLottoNumbers)
+                .limit(countOfAutoLotto)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<Lotto> getManualLottos() {
-        return manualLottos;
+    private List<Lotto> joinLottos(final List<Lotto> manualLottos, final List<Lotto> autoLottos) {
+        return Stream.of(autoLottos, manualLottos)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    public int getNumberOfAutoLotto() {
-        return money.getChanceToBuyLotto() - numberOfManualLotto;
+    public Lottos getLottos() {
+        return totalLottos;
     }
-
-    public int getNumberOfManualLotto() {
-        return numberOfManualLotto;
-    }
-
 }
