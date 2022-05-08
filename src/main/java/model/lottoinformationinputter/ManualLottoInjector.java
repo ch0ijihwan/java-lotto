@@ -1,4 +1,4 @@
-package model;
+package model.lottoinformationinputter;
 
 import model.vo.LottoNumbers;
 

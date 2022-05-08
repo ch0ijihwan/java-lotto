@@ -1,5 +1,6 @@
-package model;
+package model.lottoinformationinputter;
 
+import model.Lottos;
 import model.vo.LottoNumbers;
 
 import java.util.Collection;

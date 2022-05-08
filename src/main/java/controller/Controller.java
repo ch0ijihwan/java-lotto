@@ -1,6 +1,9 @@
 package controller;
 
 import model.*;
+import model.lottoinformationinputter.LottoTicket;
+import model.lottoinformationinputter.LottoVendingMachine;
+import model.lottoinformationinputter.ManualLottoInjector;
 import model.vo.*;
 import view.input.Input;
 import view.output.Display;

@@ -1,6 +1,7 @@
-package model.vo;
+package model;
 
-import model.Profit;
+import model.vo.Money;
+import model.vo.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,7 @@
-package model;
+package model.lottoinformationinputter;
 
+import model.Lottos;
+import model.lottoinformationinputter.LottoTicket;
 import model.vo.LottoNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

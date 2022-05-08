@@ -1,5 +1,6 @@
-package model;
+package model.lottoinformationinputter;
 
+import model.lottoinformationinputter.LottoVendingMachine;
 import model.vo.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
