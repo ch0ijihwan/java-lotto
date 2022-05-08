@@ -1,6 +1,6 @@
 package model;
 
-import model.vo.Lotto;
+import model.vo.LottoNumbers;
 import model.vo.Rank;
 
 import java.util.Collections;
@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
 
 public class Lottos {
 
-    private final List<Lotto> lottos;
+    private final List<LottoNumbers> lottoNumbers;
 
-    Lottos(final List<Lotto> lottos) {
-        this.lottos = lottos;
+    Lottos(final List<LottoNumbers> lottoNumbers) {
+        this.lottoNumbers = lottoNumbers;
     }
 
     public Map<Rank, Integer> countLottoRanks(final WinningLotto winningLotto) {
-        return lottos.stream()
+        return lottoNumbers.stream()
                 .map(winningLotto::measureRank)
                 .collect(Collectors.toUnmodifiableMap(rank -> rank, rank -> getFrequency(winningLotto, rank), (rank1, rank2) -> rank1));
     }
@@ -28,13 +28,13 @@ public class Lottos {
     }
 
     private List<Rank> measureRanks(final WinningLotto winningLotto) {
-        return lottos.stream()
+        return lottoNumbers.stream()
                 .map(winningLotto::measureRank)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(lottos);
+    public List<LottoNumbers> getLottos() {
+        return Collections.unmodifiableList(lottoNumbers);
     }
 
     @Override
@@ -42,11 +42,11 @@ public class Lottos {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Lottos otherlottos = (Lottos) o;
-        return lottos.containsAll(otherlottos.lottos);
+        return lottoNumbers.containsAll(otherlottos.lottoNumbers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lottos);
+        return Objects.hash(lottoNumbers);
     }
 }

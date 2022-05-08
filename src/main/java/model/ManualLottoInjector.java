@@ -1,6 +1,6 @@
 package model;
 
-import model.vo.Lotto;
+import model.vo.LottoNumbers;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ManualLottoInjector {
     private int manualCount;
-    private final List<Lotto> manualLottos = new ArrayList<>();
+    private final List<LottoNumbers> manualLottoNumbers = new ArrayList<>();
 
     public ManualLottoInjector(final int manualCount) {
         this.manualCount = manualCount;
@@ -19,11 +19,11 @@ public class ManualLottoInjector {
     }
 
     public void add(final List<Integer> inputLottoNumbers) {
-        manualLottos.add(Lotto.createManualLottoNumbers(inputLottoNumbers));
+        manualLottoNumbers.add(LottoNumbers.createManualLottoNumbers(inputLottoNumbers));
         manualCount = manualCount - 1;
     }
 
-    public List<Lotto> getManualLottos() {
-        return Collections.unmodifiableList(manualLottos);
+    public List<LottoNumbers> getManualLottos() {
+        return Collections.unmodifiableList(manualLottoNumbers);
     }
 }

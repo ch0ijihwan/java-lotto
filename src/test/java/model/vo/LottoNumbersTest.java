@@ -12,10 +12,10 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class LottoTest {
+class LottoNumbersTest {
 
     private static final int LOTTO_NUMBERS_SIZE = 6;
-    private Lotto lotto;
+    private LottoNumbers lottoNumbers;
 
     @Test
     @DisplayName("입력 받은 값에 해당하는 로또 넘버를 생성한다.")
@@ -28,7 +28,7 @@ class LottoTest {
         );
 
         //when
-        Lotto actual = Lotto.createManualLottoNumbers(numbers);
+        LottoNumbers actual = LottoNumbers.createManualLottoNumbers(numbers);
 
         //then
         assertThat(actual).extracting("lottoNumbers")
@@ -40,7 +40,7 @@ class LottoTest {
     @MethodSource("createNumbersParameterProvider")
     void validateLottoNumbersSize(final List<Integer> numbers) {
         //then
-        assertThatIllegalArgumentException().isThrownBy(() -> Lotto.createManualLottoNumbers(numbers))
+        assertThatIllegalArgumentException().isThrownBy(() -> LottoNumbers.createManualLottoNumbers(numbers))
                 .withMessage(String.format("로또 넘버는 %d 가지어야 합니다.", LOTTO_NUMBERS_SIZE));
     }
 
@@ -60,7 +60,7 @@ class LottoTest {
         List<Integer> numbers = List.of(1, 1, 3, 4, 5, 6);
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(() -> Lotto.createManualLottoNumbers(numbers));
+        assertThatIllegalArgumentException().isThrownBy(() -> LottoNumbers.createManualLottoNumbers(numbers));
     }
 
     @Test
@@ -68,14 +68,14 @@ class LottoTest {
     void getLottoNumbers() {
         //given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        lotto = Lotto.createManualLottoNumbers(numbers);
+        lottoNumbers = LottoNumbers.createManualLottoNumbers(numbers);
         List<LottoNumber> expect = List.of(
                 LottoNumber.valueOf(1), LottoNumber.valueOf(2), LottoNumber.valueOf(3),
                 LottoNumber.valueOf(4), LottoNumber.valueOf(5), LottoNumber.valueOf(6)
         );
 
         //when
-        List<LottoNumber> actual = lotto.getLottoNumbers();
+        List<LottoNumber> actual = lottoNumbers.getLottoNumbers();
 
         //then
         assertThat(actual).isEqualTo(expect);
@@ -84,17 +84,17 @@ class LottoTest {
     @ParameterizedTest
     @DisplayName("입력 받은 로또 넘버와 비교하여 매칭된 넘버의 갯수를 반환한다.")
     @MethodSource("createMatchingLottoNumbersParameterProvider")
-    void measureMatchingLottoNumber(final Lotto comparisonLottoNumbers, final int matchingCount) {
+    void measureMatchingLottoNumber(final LottoNumbers comparisonLottoNumbersNumbers, final int matchingCount) {
         //given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        Lotto lotto = Lotto.createManualLottoNumbers(numbers);
+        LottoNumbers lottoNumbers = LottoNumbers.createManualLottoNumbers(numbers);
         List<LottoNumber> expect = List.of(
                 LottoNumber.valueOf(1), LottoNumber.valueOf(2), LottoNumber.valueOf(3),
                 LottoNumber.valueOf(4), LottoNumber.valueOf(5), LottoNumber.valueOf(6)
         );
 
         //when
-        int actual = lotto.measureMatchingLottoNumber(comparisonLottoNumbers);
+        int actual = lottoNumbers.measureMatchingLottoNumber(comparisonLottoNumbersNumbers);
 
         //then
         assertThat(actual).isEqualTo(matchingCount);
@@ -103,9 +103,9 @@ class LottoTest {
     static Stream<Arguments> createMatchingLottoNumbersParameterProvider() {
         return Stream.of(
                 Arguments.of(
-                        Lotto.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)), 6,
-                        Lotto.createManualLottoNumbers(List.of(1, 45, 44, 43, 42, 41)), 1,
-                        Lotto.createManualLottoNumbers(List.of(1, 2, 3, 45, 44, 43)), 3)
+                        LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)), 6,
+                        LottoNumbers.createManualLottoNumbers(List.of(1, 45, 44, 43, 42, 41)), 1,
+                        LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 45, 44, 43)), 3)
         );
     }
 }

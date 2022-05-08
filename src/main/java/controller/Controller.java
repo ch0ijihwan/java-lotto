@@ -42,8 +42,8 @@ public class Controller {
 
     private Lottos createLottos(final LottoVendingMachine lottoVendingMachine, final ManualLottoInjector manualLottoInjector) {
         int countOfAutoLotto = lottoVendingMachine.getCountOfAutoLotto();
-        List<Lotto> manualLottos = manualLottoInjector.getManualLottos();
-        return new LottoTicket(countOfAutoLotto, manualLottos).getLottos();
+        List<LottoNumbers> manualLottoNumbers = manualLottoInjector.getManualLottos();
+        return new LottoTicket(countOfAutoLotto, manualLottoNumbers).getLottos();
     }
 
     private void processLottoResult(final Money initialMoney, final Lottos lottos) {
@@ -54,9 +54,9 @@ public class Controller {
 
 
     private WinningLotto inputWinningLotto() {
-        Lotto inputtedWinningLottoNumbers = Lotto.createManualLottoNumbers(input.inputWiningLotto());
+        LottoNumbers inputtedWinningLottoNumbersNumbers = LottoNumbers.createManualLottoNumbers(input.inputWiningLotto());
         LottoNumber inputtedBonusNumber = LottoNumber.valueOf(input.inputBonusNumber());
-        return new WinningLotto(inputtedWinningLottoNumbers, inputtedBonusNumber);
+        return new WinningLotto(inputtedWinningLottoNumbersNumbers, inputtedBonusNumber);
     }
 
     private void displayTotalResultOfLottoGames(final Money money, final Lottos lottos, final WinningLotto winningLotto) {

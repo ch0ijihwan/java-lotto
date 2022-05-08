@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class LottoVendingMachineTest {
+class LottoNumbersVendingMachineTest {
 
     private LottoVendingMachine lottoVendingMachine;
 

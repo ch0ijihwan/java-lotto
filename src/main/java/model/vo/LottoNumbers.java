@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Lotto {
+public class LottoNumbers {
 
     private static final Random RANDOM = new Random();
     private static final int MIN_LOTTO_NUMBER_VALUE = 1;
@@ -25,17 +25,17 @@ public class Lotto {
                 .collect(Collectors.toUnmodifiableSet());
     }
 
-    public static Lotto createAutoLottoNumbers() {
+    public static LottoNumbers createAutoLottoNumbers() {
         List<Integer> peekLottoNumbers = RANDOM_LOTTO_NUMBER_VALUES.stream()
                 .collect(Collectors.toUnmodifiableList());
-        return new Lotto(peekLottoNumbers);
+        return new LottoNumbers(peekLottoNumbers);
     }
 
-    public static Lotto createManualLottoNumbers(final List<Integer> numbers) {
-        return new Lotto(numbers);
+    public static LottoNumbers createManualLottoNumbers(final List<Integer> numbers) {
+        return new LottoNumbers(numbers);
     }
 
-    private Lotto(final List<Integer> numbers) {
+    private LottoNumbers(final List<Integer> numbers) {
         validateSize(numbers);
         validateDuplication(numbers);
         this.lottoNumbers = numbers.stream()
@@ -60,8 +60,8 @@ public class Lotto {
         return lottoNumbers;
     }
 
-    public int measureMatchingLottoNumber(final Lotto otherLottoNumbers) {
-        List<LottoNumber> comparisonLottoNumberList = otherLottoNumbers.getLottoNumbers();
+    public int measureMatchingLottoNumber(final LottoNumbers otherLottoNumbersNumbers) {
+        List<LottoNumber> comparisonLottoNumberList = otherLottoNumbersNumbers.getLottoNumbers();
         return (int) lottoNumbers.stream()
                 .filter(lottoNumber -> isAnyMatch(comparisonLottoNumberList, lottoNumber))
                 .count();
@@ -76,8 +76,8 @@ public class Lotto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Lotto lotto = (Lotto) o;
-        return Objects.equals(lottoNumbers, lotto.lottoNumbers);
+        LottoNumbers lottoNumbers = (LottoNumbers) o;
+        return Objects.equals(this.lottoNumbers, lottoNumbers.lottoNumbers);
     }
 
     @Override
