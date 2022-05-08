@@ -13,7 +13,7 @@ public class Lottos {
 
     private final List<LottoNumbers> lottoNumbers;
 
-    Lottos(final List<LottoNumbers> lottoNumbers) {
+    public Lottos(final List<LottoNumbers> lottoNumbers) {
         this.lottoNumbers = lottoNumbers;
     }
 
