@@ -12,10 +12,10 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class LottoNumbersTest {
+class LottoNumbersFactoryTest {
 
     private static final int LOTTO_NUMBERS_SIZE = 6;
-    private LottoNumbers lottoNumbers;
+    private LottoNumbersFactory lottoNumbersFactory;
 
     @Test
     @DisplayName("입력 받은 값에 해당하는 로또 넘버를 생성한다.")
@@ -28,7 +28,7 @@ class LottoNumbersTest {
         );
 
         //when
-        LottoNumbers actual = LottoNumbers.createManualLottoNumbers(numbers);
+        LottoNumbersFactory actual = LottoNumbersFactory.createManualLottoNumbers(numbers);
 
         //then
         assertThat(actual).extracting("lottoNumbers")
@@ -40,7 +40,7 @@ class LottoNumbersTest {
     @MethodSource("createNumbersParameterProvider")
     void validateLottoNumbersSize(final List<Integer> numbers) {
         //then
-        assertThatIllegalArgumentException().isThrownBy(() -> LottoNumbers.createManualLottoNumbers(numbers))
+        assertThatIllegalArgumentException().isThrownBy(() -> LottoNumbersFactory.createManualLottoNumbers(numbers))
                 .withMessage(String.format("로또 넘버는 %d 가지어야 합니다.", LOTTO_NUMBERS_SIZE));
     }
 
@@ -60,7 +60,7 @@ class LottoNumbersTest {
         List<Integer> numbers = List.of(1, 1, 3, 4, 5, 6);
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(() -> LottoNumbers.createManualLottoNumbers(numbers));
+        assertThatIllegalArgumentException().isThrownBy(() -> LottoNumbersFactory.createManualLottoNumbers(numbers));
     }
 
     @Test
@@ -68,14 +68,14 @@ class LottoNumbersTest {
     void getLottoNumbers() {
         //given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        lottoNumbers = LottoNumbers.createManualLottoNumbers(numbers);
+        lottoNumbersFactory = LottoNumbersFactory.createManualLottoNumbers(numbers);
         List<LottoNumber> expect = List.of(
                 LottoNumber.valueOf(1), LottoNumber.valueOf(2), LottoNumber.valueOf(3),
                 LottoNumber.valueOf(4), LottoNumber.valueOf(5), LottoNumber.valueOf(6)
         );
 
         //when
-        List<LottoNumber> actual = lottoNumbers.getLottoNumbers();
+        List<LottoNumber> actual = lottoNumbersFactory.getLottoNumbers();
 
         //then
         assertThat(actual).isEqualTo(expect);
@@ -84,17 +84,17 @@ class LottoNumbersTest {
     @ParameterizedTest
     @DisplayName("입력 받은 로또 넘버와 비교하여 매칭된 넘버의 갯수를 반환한다.")
     @MethodSource("createMatchingLottoNumbersParameterProvider")
-    void measureMatchingLottoNumber(final LottoNumbers comparisonLottoNumbersNumbers, final int matchingCount) {
+    void measureMatchingLottoNumber(final LottoNumbersFactory comparisonLottoNumbersNumbersFactory, final int matchingCount) {
         //given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        LottoNumbers lottoNumbers = LottoNumbers.createManualLottoNumbers(numbers);
+        LottoNumbersFactory lottoNumbersFactory = LottoNumbersFactory.createManualLottoNumbers(numbers);
         List<LottoNumber> expect = List.of(
                 LottoNumber.valueOf(1), LottoNumber.valueOf(2), LottoNumber.valueOf(3),
                 LottoNumber.valueOf(4), LottoNumber.valueOf(5), LottoNumber.valueOf(6)
         );
 
         //when
-        int actual = lottoNumbers.measureMatchingLottoNumber(comparisonLottoNumbersNumbers);
+        int actual = lottoNumbersFactory.measureMatchingLottoNumber(comparisonLottoNumbersNumbersFactory);
 
         //then
         assertThat(actual).isEqualTo(matchingCount);
@@ -103,9 +103,9 @@ class LottoNumbersTest {
     static Stream<Arguments> createMatchingLottoNumbersParameterProvider() {
         return Stream.of(
                 Arguments.of(
-                        LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)), 6,
-                        LottoNumbers.createManualLottoNumbers(List.of(1, 45, 44, 43, 42, 41)), 1,
-                        LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 45, 44, 43)), 3)
+                        LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)), 6,
+                        LottoNumbersFactory.createManualLottoNumbers(List.of(1, 45, 44, 43, 42, 41)), 1,
+                        LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 45, 44, 43)), 3)
         );
     }
 }

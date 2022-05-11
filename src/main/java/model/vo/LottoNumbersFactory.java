@@ -1,41 +1,40 @@
 package model.vo;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
-public class LottoNumbers {
+public class LottoNumbersFactory {
 
-    private static final Random RANDOM = new Random();
     private static final int MIN_LOTTO_NUMBER_VALUE = 1;
     private static final int MAX_LOTTO_NUMBER_VALUE = 45;
     private static final int LOTTO_NUMBERS_SIZE = 6;
-    private static final Set<Integer> RANDOM_LOTTO_NUMBER_VALUES = createRandomLottoNumberValues();
+    private static final List<Integer> All_LOTTO_NUMBER_VALUES = createAllLottoNumberValues();
 
     private final List<LottoNumber> lottoNumbers;
 
-    private static Set<Integer> createRandomLottoNumberValues() {
-        return Stream.generate(() -> RANDOM.nextInt(MAX_LOTTO_NUMBER_VALUE) + MIN_LOTTO_NUMBER_VALUE)
-                .distinct()
+    private static List<Integer> createAllLottoNumberValues() {
+        return IntStream.rangeClosed(MIN_LOTTO_NUMBER_VALUE, MAX_LOTTO_NUMBER_VALUE)
+                .boxed()
+                .collect(Collectors.toList());
+    }
+
+    public static LottoNumbersFactory createAutoLottoNumbers() {
+        Collections.shuffle(All_LOTTO_NUMBER_VALUES);
+        List<Integer> peekLottoNumbers = All_LOTTO_NUMBER_VALUES.stream()
                 .limit(LOTTO_NUMBERS_SIZE)
-                .collect(Collectors.toUnmodifiableSet());
-    }
-
-    public static LottoNumbers createAutoLottoNumbers() {
-        List<Integer> peekLottoNumbers = RANDOM_LOTTO_NUMBER_VALUES.stream()
                 .collect(Collectors.toUnmodifiableList());
-        return new LottoNumbers(peekLottoNumbers);
+        return new LottoNumbersFactory(peekLottoNumbers);
     }
 
-    public static LottoNumbers createManualLottoNumbers(final List<Integer> numbers) {
-        return new LottoNumbers(numbers);
+    public static LottoNumbersFactory createManualLottoNumbers(final List<Integer> numbers) {
+        return new LottoNumbersFactory(numbers);
     }
 
-    private LottoNumbers(final List<Integer> numbers) {
+    private LottoNumbersFactory(final List<Integer> numbers) {
         validateSize(numbers);
         validateDuplication(numbers);
         this.lottoNumbers = numbers.stream()
@@ -60,8 +59,8 @@ public class LottoNumbers {
         return lottoNumbers;
     }
 
-    public int measureMatchingLottoNumber(final LottoNumbers otherLottoNumbersNumbers) {
-        List<LottoNumber> comparisonLottoNumberList = otherLottoNumbersNumbers.getLottoNumbers();
+    public int measureMatchingLottoNumber(final LottoNumbersFactory otherLottoNumbersNumbersFactory) {
+        List<LottoNumber> comparisonLottoNumberList = otherLottoNumbersNumbersFactory.getLottoNumbers();
         return (int) lottoNumbers.stream()
                 .filter(lottoNumber -> isAnyMatch(comparisonLottoNumberList, lottoNumber))
                 .count();
@@ -76,8 +75,8 @@ public class LottoNumbers {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LottoNumbers lottoNumbers = (LottoNumbers) o;
-        return Objects.equals(this.lottoNumbers, lottoNumbers.lottoNumbers);
+        LottoNumbersFactory lottoNumbersFactory = (LottoNumbersFactory) o;
+        return Objects.equals(this.lottoNumbers, lottoNumbersFactory.lottoNumbers);
     }
 
     @Override

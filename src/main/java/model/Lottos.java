@@ -1,6 +1,6 @@
 package model;
 
-import model.vo.LottoNumbers;
+import model.vo.LottoNumbersFactory;
 import model.vo.Rank;
 
 import java.util.Collections;
@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
 
 public class Lottos {
 
-    private final List<LottoNumbers> lottoNumbers;
+    private final List<LottoNumbersFactory> lottoNumberFactories;
 
-    public Lottos(final List<LottoNumbers> lottoNumbers) {
-        this.lottoNumbers = lottoNumbers;
+    public Lottos(final List<LottoNumbersFactory> lottoNumberFactories) {
+        this.lottoNumberFactories = lottoNumberFactories;
     }
 
     public Map<Rank, Integer> countLottoRanks(final WinningLotto winningLotto) {
-        return lottoNumbers.stream()
+        return lottoNumberFactories.stream()
                 .map(winningLotto::measureRank)
                 .collect(Collectors.toUnmodifiableMap(rank -> rank, rank -> getFrequency(winningLotto, rank), (rank1, rank2) -> rank1));
     }
@@ -28,13 +28,13 @@ public class Lottos {
     }
 
     private List<Rank> measureRanks(final WinningLotto winningLotto) {
-        return lottoNumbers.stream()
+        return lottoNumberFactories.stream()
                 .map(winningLotto::measureRank)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<LottoNumbers> getLottos() {
-        return Collections.unmodifiableList(lottoNumbers);
+    public List<LottoNumbersFactory> getLottos() {
+        return Collections.unmodifiableList(lottoNumberFactories);
     }
 
     @Override
@@ -42,11 +42,11 @@ public class Lottos {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Lottos otherlottos = (Lottos) o;
-        return lottoNumbers.containsAll(otherlottos.lottoNumbers);
+        return lottoNumberFactories.containsAll(otherlottos.lottoNumberFactories);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lottoNumbers);
+        return Objects.hash(lottoNumberFactories);
     }
 }

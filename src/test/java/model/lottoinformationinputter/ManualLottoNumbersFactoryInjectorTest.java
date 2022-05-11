@@ -1,7 +1,6 @@
 package model.lottoinformationinputter;
 
-import model.lottoinformationinputter.ManualLottoInjector;
-import model.vo.LottoNumbers;
+import model.vo.LottoNumbersFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ManualLottoNumbersInjectorTest {
+class ManualLottoNumbersFactoryInjectorTest {
     private ManualLottoInjector manualLottoInjector;
 
     @BeforeEach
@@ -37,7 +36,7 @@ class ManualLottoNumbersInjectorTest {
     void addManualLottoNumbers() {
         //given
         List<Integer> input = List.of(1, 2, 3, 4, 5, 6);
-        List<LottoNumbers> expect = List.of(LottoNumbers.createManualLottoNumbers(input));
+        List<LottoNumbersFactory> expect = List.of(LottoNumbersFactory.createManualLottoNumbers(input));
 
         //when
         manualLottoInjector.add(input);
@@ -55,11 +54,11 @@ class ManualLottoNumbersInjectorTest {
         List<Integer> second = List.of(7, 8, 9, 10, 11, 12);
         manualLottoInjector.add(first);
         manualLottoInjector.add(second);
-        List<LottoNumbers> expect = List.of(LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
-                LottoNumbers.createManualLottoNumbers(List.of(7, 8, 9, 10, 11, 12)));
+        List<LottoNumbersFactory> expect = List.of(LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
+                LottoNumbersFactory.createManualLottoNumbers(List.of(7, 8, 9, 10, 11, 12)));
 
         //when
-        List<LottoNumbers> actual = manualLottoInjector.getManualLottos();
+        List<LottoNumbersFactory> actual = manualLottoInjector.getManualLottos();
 
         //then
         assertThat(actual).isEqualTo(expect);
