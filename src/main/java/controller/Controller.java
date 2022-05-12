@@ -25,7 +25,7 @@ public class Controller {
         Money initialMoney = new Money(input.inputMoney());
         LottoVendingMachine lottoVendingMachine = new LottoVendingMachine(initialMoney, input.inputCountOfManualLotto());
         ManualLottoInjector manualLottoInjector = inputManualLottoNumbers(lottoVendingMachine.getCountOfManualLotto());
-        Lottos lottos = processLottoGame(lottoVendingMachine, manualLottoInjector);
+        Lottos lottos = processLottos(lottoVendingMachine, manualLottoInjector);
         processLottoResult(initialMoney, lottos);
     }
 
@@ -37,7 +37,7 @@ public class Controller {
         return manualLottoInjector;
     }
 
-    private Lottos processLottoGame(final LottoVendingMachine lottoVendingMachine, final ManualLottoInjector manualLottoInjector) {
+    private Lottos processLottos(final LottoVendingMachine lottoVendingMachine, final ManualLottoInjector manualLottoInjector) {
         Lottos lottos = createLottos(lottoVendingMachine, manualLottoInjector);
         output.displayDetailsOfLottoPurchased(lottos.getLottos());
         return lottos;
@@ -45,20 +45,21 @@ public class Controller {
 
     private Lottos createLottos(final LottoVendingMachine lottoVendingMachine, final ManualLottoInjector manualLottoInjector) {
         int countOfAutoLotto = lottoVendingMachine.getCountOfAutoLotto();
-        List<LottoNumbersFactory> manualLottoNumberFactories = manualLottoInjector.getManualLottos();
-        return new LottoTicket(countOfAutoLotto, manualLottoNumberFactories).getLottos();
+        List<LottoNumbers> manualLottoNumbers = manualLottoInjector.getManualLottos();
+        return new LottoTicket(countOfAutoLotto, manualLottoNumbers).getLottos();
     }
 
     private void processLottoResult(final Money initialMoney, final Lottos lottos) {
         WinningLotto winningLotto = inputWinningLotto();
         displayTotalResultOfLottoGames(initialMoney, lottos, winningLotto);
+        output.displayMessageAboutInputManualLottoNumbers();
     }
 
 
     private WinningLotto inputWinningLotto() {
-        LottoNumbersFactory inputtedWinningLottoNumbersNumbersFactory = LottoNumbersFactory.createManualLottoNumbers(input.inputWiningLotto());
+        LottoNumbers inputtedWinningLottoNumbersNumbers = LottoNumbers.createManualLottoNumbers(input.inputWiningLotto());
         LottoNumber inputtedBonusNumber = LottoNumber.valueOf(input.inputBonusNumber());
-        return new WinningLotto(inputtedWinningLottoNumbersNumbersFactory, inputtedBonusNumber);
+        return new WinningLotto(inputtedWinningLottoNumbersNumbers, inputtedBonusNumber);
     }
 
     private void displayTotalResultOfLottoGames(final Money money, final Lottos lottos, final WinningLotto winningLotto) {
