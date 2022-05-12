@@ -55,4 +55,11 @@ public class LottoNumber implements Comparable<LottoNumber> {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    @Override
+    public String    toString() {
+        return "LottoNumber{" +
+                "value=" + value +
+                '}';
+    }
 }
