@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class LottoNumberTest {
+
     @ParameterizedTest
     @DisplayName("로또 넘버는 1에서 45 까지어야 합니다.")
     @ValueSource(ints = {0, 46})
