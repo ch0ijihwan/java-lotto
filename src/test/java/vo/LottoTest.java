@@ -1,8 +1,7 @@
-package model;
+package vo;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import vo.LottoNumber;
 
 import java.util.List;
 

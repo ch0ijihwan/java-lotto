@@ -1,6 +1,4 @@
-package model;
-
-import vo.LottoNumber;
+package vo;
 
 import java.util.Collections;
 import java.util.List;

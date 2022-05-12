@@ -1,8 +1,8 @@
 package model.factory;
 
-import model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import vo.Lotto;
 import vo.LottoNumber;
 
 import java.util.List;
