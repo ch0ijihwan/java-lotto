@@ -1,5 +1,6 @@
-package model;
+package model.factory;
 
+import model.Lotto;
 import vo.LottoNumber;
 
 import java.util.Collections;
