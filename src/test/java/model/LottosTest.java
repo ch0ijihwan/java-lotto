@@ -1,6 +1,6 @@
 package model;
 
-import model.vo.LottoNumbersFactory;
+import model.vo.LottoNumbers;
 import model.vo.LottoNumber;
 import model.vo.Rank;
 import org.junit.jupiter.api.DisplayName;
@@ -25,14 +25,14 @@ class LottosTest {
     void measureLottoRanks() {
         //given
         Lottos lottos = new Lottos(List.of(
-                LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
-                LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 7)),
-                LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 10)),
-                LottoNumbersFactory.createManualLottoNumbers(List.of(7, 8, 9, 10, 11, 12))
+                LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
+                LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 7)),
+                LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 10)),
+                LottoNumbers.createManualLottoNumbers(List.of(7, 8, 9, 10, 11, 12))
         ));
         int expectFrequencyOfRank = 1;
 
-        WinningLotto winningLotto = new WinningLotto(LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)), LottoNumber.valueOf(7));
+        WinningLotto winningLotto = new WinningLotto(LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)), LottoNumber.valueOf(7));
 
         //when
         Map<Rank, Integer> lottoResults = lottos.countLottoRanks(winningLotto);
@@ -52,9 +52,9 @@ class LottosTest {
     void equals(final Lottos otherLottos, final boolean expect) {
         //given
         Lottos lottos = new Lottos(List.of(
-                LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
-                LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
-                LottoNumbersFactory.createManualLottoNumbers(List.of(7, 8, 9, 10, 11, 12))
+                LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
+                LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
+                LottoNumbers.createManualLottoNumbers(List.of(7, 8, 9, 10, 11, 12))
         ));
 
         //when
@@ -67,16 +67,16 @@ class LottosTest {
     static Stream<Arguments> createLottosParameterProvider() {
         return Stream.of(
                 of(new Lottos(List.of(
-                        LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
-                        LottoNumbersFactory.createManualLottoNumbers(List.of(7, 8, 9, 10, 11, 12)),
-                        LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)))), true),
+                        LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
+                        LottoNumbers.createManualLottoNumbers(List.of(7, 8, 9, 10, 11, 12)),
+                        LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)))), true),
                 of(new Lottos(List.of(
-                        LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
-                        LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
-                        LottoNumbersFactory.createManualLottoNumbers(List.of(7, 8, 9, 10, 11, 12)))), true),
+                        LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
+                        LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
+                        LottoNumbers.createManualLottoNumbers(List.of(7, 8, 9, 10, 11, 12)))), true),
                 of(new Lottos(List.of(
-                        LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 45)),
-                        LottoNumbersFactory.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
-                        LottoNumbersFactory.createManualLottoNumbers(List.of(7, 8, 9, 10, 11, 12)))), false));
+                        LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 45)),
+                        LottoNumbers.createManualLottoNumbers(List.of(1, 2, 3, 4, 5, 6)),
+                        LottoNumbers.createManualLottoNumbers(List.of(7, 8, 9, 10, 11, 12)))), false));
     }
 }

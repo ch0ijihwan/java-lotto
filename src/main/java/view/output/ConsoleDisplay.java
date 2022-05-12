@@ -1,6 +1,6 @@
 package view.output;
 
-import model.vo.LottoNumbersFactory;
+import model.vo.LottoNumbers;
 import model.vo.LottoNumber;
 import model.vo.Rank;
 
@@ -21,9 +21,9 @@ public class ConsoleDisplay implements Display {
     private static final String INPUT_MANUAL_LOTTO_NUMBERS_MESSAGE = "수동으로 구매할 번호를 입력해 주세요";
 
     @Override
-    public void displayDetailsOfLottoPurchased(final List<LottoNumbersFactory> lottoNumbersFactoryList) {
-        System.out.printf(LOTTO_COUNT_MESSAGE, lottoNumbersFactoryList.size());
-        for (LottoNumbersFactory lotto : lottoNumbersFactoryList) {
+    public void displayDetailsOfLottoPurchased(final List<LottoNumbers> lottoNumbersList) {
+        System.out.printf(LOTTO_COUNT_MESSAGE, lottoNumbersList.size());
+        for (LottoNumbers lotto : lottoNumbersList) {
             String lottoNumbers = lotto.getLottoNumbers()
                     .stream()
                     .map(LottoNumber::getValue)

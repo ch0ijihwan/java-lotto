@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LottoNumbersFactory {
+public class LottoNumbers {
 
     private static final int MIN_LOTTO_NUMBER_VALUE = 1;
     private static final int MAX_LOTTO_NUMBER_VALUE = 45;
@@ -22,19 +22,19 @@ public class LottoNumbersFactory {
                 .collect(Collectors.toList());
     }
 
-    public static LottoNumbersFactory createAutoLottoNumbers() {
+    public static LottoNumbers createAutoLottoNumbers() {
         Collections.shuffle(All_LOTTO_NUMBER_VALUES);
         List<Integer> peekLottoNumbers = All_LOTTO_NUMBER_VALUES.stream()
                 .limit(LOTTO_NUMBERS_SIZE)
                 .collect(Collectors.toUnmodifiableList());
-        return new LottoNumbersFactory(peekLottoNumbers);
+        return new LottoNumbers(peekLottoNumbers);
     }
 
-    public static LottoNumbersFactory createManualLottoNumbers(final List<Integer> numbers) {
-        return new LottoNumbersFactory(numbers);
+    public static LottoNumbers createManualLottoNumbers(final List<Integer> numbers) {
+        return new LottoNumbers(numbers);
     }
 
-    private LottoNumbersFactory(final List<Integer> numbers) {
+    private LottoNumbers(final List<Integer> numbers) {
         validateSize(numbers);
         validateDuplication(numbers);
         this.lottoNumbers = numbers.stream()
@@ -59,7 +59,7 @@ public class LottoNumbersFactory {
         return lottoNumbers;
     }
 
-    public int measureMatchingLottoNumber(final LottoNumbersFactory otherLottoNumbersNumbersFactory) {
+    public int measureMatchingLottoNumber(final LottoNumbers otherLottoNumbersNumbersFactory) {
         List<LottoNumber> comparisonLottoNumberList = otherLottoNumbersNumbersFactory.getLottoNumbers();
         return (int) lottoNumbers.stream()
                 .filter(lottoNumber -> isAnyMatch(comparisonLottoNumberList, lottoNumber))
@@ -75,8 +75,8 @@ public class LottoNumbersFactory {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LottoNumbersFactory lottoNumbersFactory = (LottoNumbersFactory) o;
-        return Objects.equals(this.lottoNumbers, lottoNumbersFactory.lottoNumbers);
+        LottoNumbers lottoNumbers = (LottoNumbers) o;
+        return Objects.equals(this.lottoNumbers, lottoNumbers.lottoNumbers);
     }
 
     @Override

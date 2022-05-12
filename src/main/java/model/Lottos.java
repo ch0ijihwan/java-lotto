@@ -1,6 +1,6 @@
 package model;
 
-import model.vo.LottoNumbersFactory;
+import model.vo.LottoNumbers;
 import model.vo.Rank;
 
 import java.util.Collections;
@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 
 public class Lottos {
 
-    private final List<LottoNumbersFactory> lottoNumberFactories;
+    private final List<LottoNumbers> lottoNumberFactories;
 
-    public Lottos(final List<LottoNumbersFactory> lottoNumberFactories) {
+    public Lottos(final List<LottoNumbers> lottoNumberFactories) {
         this.lottoNumberFactories = lottoNumberFactories;
     }
 
@@ -33,7 +33,7 @@ public class Lottos {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<LottoNumbersFactory> getLottos() {
+    public List<LottoNumbers> getLottos() {
         return Collections.unmodifiableList(lottoNumberFactories);
     }
 
