@@ -4,6 +4,8 @@ import vo.Lotto;
 import vo.LottoNumber;
 import vo.Rank;
 
+import java.util.Objects;
+
 public class WinningLotto {
 
     private static final int COUNT_FOR_BONUS_NUMBER_DETERMINATION = 5;
@@ -42,5 +44,18 @@ public class WinningLotto {
         return lottoToCompare.getLottoNumbers()
                 .stream()
                 .anyMatch(lottoNumber -> lottoNumber.equals(bonsNumber));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WinningLotto that = (WinningLotto) o;
+        return Objects.equals(winningLotto, that.winningLotto) && Objects.equals(bonsNumber, that.bonsNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(winningLotto, bonsNumber);
     }
 }
