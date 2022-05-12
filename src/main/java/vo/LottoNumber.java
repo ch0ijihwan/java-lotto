@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
 
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
@@ -36,6 +36,11 @@ public class LottoNumber {
 
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public int compareTo(LottoNumber o) {
+        return Integer.compare(this.value, o.value);
     }
 
     @Override
