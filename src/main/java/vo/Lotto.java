@@ -51,4 +51,17 @@ public class Lotto {
     public int hashCode() {
         return Objects.hash(lottoNumbers);
     }
+
+    public int countMatchingNumber(final Lotto otherLotto) {
+        List<LottoNumber> otherLottoNumbers = otherLotto.lottoNumbers;
+
+        return (int) lottoNumbers.stream()
+                .filter(lottoNumber -> isAnyMatch(otherLottoNumbers, lottoNumber))
+                .count();
+    }
+
+    private boolean isAnyMatch(final List<LottoNumber> otherLottoNumbers, final LottoNumber lottoNumber) {
+        return otherLottoNumbers.stream()
+                .anyMatch(lottoNumber::equals);
+    }
 }
