@@ -2,7 +2,7 @@ package model;
 
 import model.dto.LottoDto;
 import model.factory.LottoFactory;
-import model.lotto.Lottos;
+import model.lotto.LotteryTicket;
 import model.lotto.WinningLotto;
 import model.lotto.vo.Lotto;
 import model.lotto.vo.LottoNumber;
@@ -21,14 +21,14 @@ public class VendingMachine {
 
     private static final int PRICE_OF_LOTTO = 1000;
 
-    private final Lottos lottos;
+    private final LotteryTicket lotteryTicket;
     private final TotalPurchaseAmount totalPurchaseAmount;
     private final CountOfManualPurchase countOfManualPurchase;
 
     public VendingMachine(final int totalPurchaseAmount, final List<LottoDto> manualLottosInput) {
         this.totalPurchaseAmount = new TotalPurchaseAmount(totalPurchaseAmount, PRICE_OF_LOTTO);
         this.countOfManualPurchase = new CountOfManualPurchase(manualLottosInput.size(), this.totalPurchaseAmount.getTotalPurchaseAmount());
-        this.lottos = new Lottos(initializePreprocessedLotteryTicket(getCountOfAutoPurchase(), manualLottosInput));
+        this.lotteryTicket = new LotteryTicket(initializePreprocessedLotteryTicket(getCountOfAutoPurchase(), manualLottosInput));
     }
 
 
@@ -60,7 +60,7 @@ public class VendingMachine {
     }
 
     public List<LottoDto> getInformationOfLottos() {
-        return lottos.getLottos()
+        return lotteryTicket.getLottos()
                 .stream()
                 .map(this::createLottoDto)
                 .collect(Collectors.toUnmodifiableList());
@@ -79,7 +79,7 @@ public class VendingMachine {
     }
 
     public LotteryResult getLotteryResult(final WinningLotto winningLotto) {
-        List<Rank> matchingResult = lottos.getMatchingResult(winningLotto);
+        List<Rank> matchingResult = lotteryTicket.getMatchingResult(winningLotto);
         Map<Rank, Integer> rankAndFrequency = matchingResult.stream()
                 .collect(Collectors.toUnmodifiableMap(rank -> rank, rank -> Collections.frequency(matchingResult, rank)));
         return new LotteryResult(rankAndFrequency, totalPurchaseAmount);
@@ -90,11 +90,11 @@ public class VendingMachine {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         VendingMachine that = (VendingMachine) o;
-        return Objects.equals(lottos, that.lottos) && Objects.equals(totalPurchaseAmount, that.totalPurchaseAmount) && Objects.equals(countOfManualPurchase, that.countOfManualPurchase);
+        return Objects.equals(lotteryTicket, that.lotteryTicket) && Objects.equals(totalPurchaseAmount, that.totalPurchaseAmount) && Objects.equals(countOfManualPurchase, that.countOfManualPurchase);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lottos, totalPurchaseAmount, countOfManualPurchase);
+        return Objects.hash(lotteryTicket, totalPurchaseAmount, countOfManualPurchase);
     }
 }

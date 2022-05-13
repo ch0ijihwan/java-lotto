@@ -12,7 +12,7 @@ import java.util.List;
 import static model.lotto.vo.Rank.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LottosTest {
+class LotteryTicketTest {
 
     @Test
     @DisplayName("로또들을 반환한다.")
@@ -22,10 +22,10 @@ class LottosTest {
                 LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 5, 6)),
                 LottoFactory.createManualLotto(List.of(7, 8, 9, 10, 11, 12))
         );
-        Lottos lottos = new Lottos(input);
+        LotteryTicket lotteryTicket = new LotteryTicket(input);
 
         //when
-        List<Lotto> actual = lottos.getLottos();
+        List<Lotto> actual = lotteryTicket.getLottos();
 
         //then
         assertThat(actual).isEqualTo(input);
@@ -45,11 +45,11 @@ class LottosTest {
                 LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 5, 45)),
                 LottoFactory.createManualLotto(List.of(1, 2, 3, 45, 44, 43))
         );
-        Lottos lottos = new Lottos(input);
+        LotteryTicket lotteryTicket = new LotteryTicket(input);
         List<Rank> expect = List.of(FIRST, SECOND, THIRD, FIFTH);
 
         //when
-        List<Rank> actual = lottos.getMatchingResult(winningLotto);
+        List<Rank> actual = lotteryTicket.getMatchingResult(winningLotto);
 
         //then
         assertThat(actual).isEqualTo(expect);

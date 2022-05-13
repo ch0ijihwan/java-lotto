@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Lottos {
+public class LotteryTicket {
 
     private final List<Lotto> lottos;
 
-    public Lottos(final List<Lotto> lottos) {
+    public LotteryTicket(final List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
@@ -31,8 +31,8 @@ public class Lottos {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Lottos otherLottos = (Lottos) o;
-        return lottos.containsAll(otherLottos.lottos);
+        LotteryTicket otherLotteryTicket = (LotteryTicket) o;
+        return lottos.containsAll(otherLotteryTicket.lottos);
     }
 
     @Override
