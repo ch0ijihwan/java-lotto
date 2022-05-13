@@ -1,7 +1,7 @@
 package model.factory;
 
-import vo.Lotto;
-import vo.LottoNumber;
+import model.lotto.vo.Lotto;
+import model.lotto.vo.LottoNumber;
 
 import java.util.Collections;
 import java.util.List;

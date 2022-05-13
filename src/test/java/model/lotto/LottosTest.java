@@ -1,18 +1,19 @@
-package model;
+package model.lotto;
 
 import model.factory.LottoFactory;
+import model.lotto.vo.Lotto;
+import model.lotto.vo.LottoNumber;
+import model.lotto.vo.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import vo.Lotto;
-import vo.LottoNumber;
-import vo.Rank;
 
 import java.util.List;
 
+import static model.lotto.vo.Rank.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static vo.Rank.*;
 
 class LottosTest {
+
     @Test
     @DisplayName("로또들을 반환한다.")
     void getLottos() {

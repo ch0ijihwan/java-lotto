@@ -1,4 +1,4 @@
-package model;
+package model.purchase;
 
 import java.util.Objects;
 

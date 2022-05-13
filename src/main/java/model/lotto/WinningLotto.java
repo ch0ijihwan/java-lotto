@@ -1,8 +1,8 @@
-package model;
+package model.lotto;
 
-import vo.Lotto;
-import vo.LottoNumber;
-import vo.Rank;
+import model.lotto.vo.Lotto;
+import model.lotto.vo.LottoNumber;
+import model.lotto.vo.Rank;
 
 import java.util.Objects;
 

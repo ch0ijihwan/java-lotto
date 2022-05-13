@@ -1,4 +1,4 @@
-package model;
+package model.purchase;
 
 public class TotalPurchaseAmount {
 

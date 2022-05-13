@@ -1,9 +1,9 @@
 package model.factory;
 
+import model.lotto.vo.Lotto;
+import model.lotto.vo.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import vo.Lotto;
-import vo.LottoNumber;
 
 import java.util.List;
 

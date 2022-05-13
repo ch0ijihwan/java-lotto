@@ -1,4 +1,4 @@
-package vo;
+package model.lotto.vo;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,8 +9,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static model.lotto.vo.Rank.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static vo.Rank.*;
 
 class RankTest {
 

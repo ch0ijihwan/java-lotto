@@ -1,14 +1,14 @@
-package model;
+package model.lotto;
 
 import model.factory.LottoFactory;
+import model.lotto.vo.Lotto;
+import model.lotto.vo.LottoNumber;
+import model.lotto.vo.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import vo.Lotto;
-import vo.LottoNumber;
-import vo.Rank;
 
 import java.util.List;
 import java.util.stream.Stream;
