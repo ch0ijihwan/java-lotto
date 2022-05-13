@@ -50,7 +50,7 @@ class TotalPurchaseAmountTest {
 
     @Test
     @DisplayName("총 투입 금액 반환")
-    void getValue() {
+    void getTotalPurchaseAmount() {
         //given
         int totalPurchaseAmountInput = 5000;
         int lottoPrice = 1000;
@@ -58,7 +58,7 @@ class TotalPurchaseAmountTest {
         int expect = 5000;
 
         //when
-        int actual = totalPurchaseAmount.getValue();
+        int actual = totalPurchaseAmount.getTotalPurchaseAmount();
 
         //then
         assertThat(actual).isEqualTo(expect);

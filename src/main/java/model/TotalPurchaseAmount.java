@@ -30,7 +30,7 @@ public class TotalPurchaseAmount {
         return totalPurchaseAmount / lottoPrice;
     }
 
-    public int getValue() {
+    public int getTotalPurchaseAmount() {
         return totalPurchaseAmount;
     }
 }
