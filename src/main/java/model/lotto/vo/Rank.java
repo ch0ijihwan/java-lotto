@@ -26,7 +26,7 @@ public enum Rank {
 
     public static Rank valueOf(final int matchingCount, final boolean bonus) {
         if (matchingCount == SECOND_OR_THIRD_MATCHING_COUNT) {
-            return gradeRankByBonus(bonus);
+            return rankByBonus(bonus);
         }
 
         return Arrays.stream(values())
@@ -35,7 +35,7 @@ public enum Rank {
                 .orElse(LAST);
     }
 
-    private static Rank gradeRankByBonus(final boolean bonus) {
+    private static Rank rankByBonus(final boolean bonus) {
         if (bonus) {
             return SECOND;
         }
