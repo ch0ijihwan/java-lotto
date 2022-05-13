@@ -28,11 +28,11 @@ public class VendingMachine {
     public VendingMachine(final int totalPurchaseAmount, final List<LottoDto> manualLottosInput) {
         this.totalPurchaseAmount = new TotalPurchaseAmount(totalPurchaseAmount, PRICE_OF_LOTTO);
         this.countOfManualPurchase = new CountOfManualPurchase(manualLottosInput.size(), this.totalPurchaseAmount.getTotalPurchaseAmount());
-        this.lottos = new Lottos(initializePreprocessedLottos(getCountOfAutoPurchase(), manualLottosInput));
+        this.lottos = new Lottos(initializePreprocessedLotteryTicket(getCountOfAutoPurchase(), manualLottosInput));
     }
 
 
-    private List<Lotto> initializePreprocessedLottos(final int countOfAutoLotto, final List<LottoDto> manualLottosInput) {
+    private List<Lotto> initializePreprocessedLotteryTicket(final int countOfAutoLotto, final List<LottoDto> manualLottosInput) {
         List<Lotto> autoLottos = createAutoLottos(countOfAutoLotto);
         List<Lotto> manualLottos = createManualLottos(manualLottosInput);
         return joinLottos(autoLottos, manualLottos);
@@ -78,14 +78,11 @@ public class VendingMachine {
         return countOfManualPurchase.getValue();
     }
 
-    public Map<Rank, Integer> getTotalResultOfLotto(final WinningLotto winningLotto) {
+    public LotteryResult getLotteryResult(final WinningLotto winningLotto) {
         List<Rank> matchingResult = lottos.getMatchingResult(winningLotto);
-        return matchingResult.stream()
-                .collect(Collectors.toUnmodifiableMap(rank -> rank, rank -> getFrequency(matchingResult, rank)));
-    }
-
-    private int getFrequency(final List<Rank> matchingResult, final Rank rank) {
-        return Collections.frequency(matchingResult, rank);
+        Map<Rank, Integer> rankAndFrequency = matchingResult.stream()
+                .collect(Collectors.toUnmodifiableMap(rank -> rank, rank -> Collections.frequency(matchingResult, rank)));
+        return new LotteryResult(rankAndFrequency, totalPurchaseAmount);
     }
 
     @Override

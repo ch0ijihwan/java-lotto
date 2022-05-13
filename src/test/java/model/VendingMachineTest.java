@@ -5,12 +5,10 @@ import model.factory.LottoFactory;
 import model.lotto.WinningLotto;
 import model.lotto.vo.Lotto;
 import model.lotto.vo.LottoNumber;
-import model.lotto.vo.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Map;
 
 import static model.lotto.vo.Rank.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -95,14 +93,14 @@ class VendingMachineTest {
         int expectFrequencyOfRank = 1;
 
         //when
-        Map<Rank, Integer> actual = vendingMachine.getTotalResultOfLotto(winningLotto);
+        LotteryResult actual = vendingMachine.getLotteryResult(winningLotto);
 
         //then
         assertAll(
-                () -> assertThat(actual).containsEntry(FIRST, expectFrequencyOfRank),
-                () -> assertThat(actual).containsEntry(SECOND, expectFrequencyOfRank),
-                () -> assertThat(actual).containsEntry(THIRD, expectFrequencyOfRank),
-                () -> assertThat(actual).containsEntry(FOURTH, expectFrequencyOfRank)
+                () -> assertThat(actual.getRankAndFrequencyNumber()).containsEntry(FIRST, expectFrequencyOfRank),
+                () -> assertThat(actual.getRankAndFrequencyNumber()).containsEntry(SECOND, expectFrequencyOfRank),
+                () -> assertThat(actual.getRankAndFrequencyNumber()).containsEntry(THIRD, expectFrequencyOfRank),
+                () -> assertThat(actual.getRankAndFrequencyNumber()).containsEntry(FOURTH, expectFrequencyOfRank)
         );
     }
 }
