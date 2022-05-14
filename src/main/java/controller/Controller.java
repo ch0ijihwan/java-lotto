@@ -32,8 +32,8 @@ public class Controller {
         int totalPurchaseAmount = input.inputTotalPurchaseAmount();
         CountOfManualPurchase countOfManualPurchase = new CountOfManualPurchase(input.inputCountOfManualPurchase(), totalPurchaseAmount);
         int countOfManualLottoInputs = countOfManualPurchase.getValue();
-        List<LottoDto> informationManualLottos = input.inputManualLottoNumbers(countOfManualLottoInputs);
-        return new LotteryGame(totalPurchaseAmount, informationManualLottos);
+        List<LottoDto> informationOfManualLottos = input.inputManualLottoNumbers(countOfManualLottoInputs);
+        return new LotteryGame(totalPurchaseAmount, informationOfManualLottos);
     }
 
     private void displayPurchasedLotteryTicket(final LotteryGame lotteryGame) {

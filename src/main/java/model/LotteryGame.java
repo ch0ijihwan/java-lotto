@@ -32,9 +32,9 @@ public class LotteryGame {
     }
 
 
-    private List<Lotto> initializePreprocessedLotteryTicket(final int countOfAutoLotto, final List<LottoDto> manualLottosInput) {
+    private List<Lotto> initializePreprocessedLotteryTicket(final int countOfAutoLotto, final List<LottoDto> informationOfManualLottos) {
         List<Lotto> autoLottos = createAutoLottos(countOfAutoLotto);
-        List<Lotto> manualLottos = createManualLottos(manualLottosInput);
+        List<Lotto> manualLottos = createManualLottos(informationOfManualLottos);
         return joinLottos(autoLottos, manualLottos);
     }
 
