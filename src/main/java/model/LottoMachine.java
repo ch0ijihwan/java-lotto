@@ -17,7 +17,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class VendingMachine {
+public class LottoMachine {
 
     private static final int PRICE_OF_LOTTO = 1000;
 
@@ -25,7 +25,7 @@ public class VendingMachine {
     private final TotalPurchaseAmount totalPurchaseAmount;
     private final CountOfManualPurchase countOfManualPurchase;
 
-    public VendingMachine(final int totalPurchaseAmount, final List<LottoDto> manualLottosInput) {
+    public LottoMachine(final int totalPurchaseAmount, final List<LottoDto> manualLottosInput) {
         this.totalPurchaseAmount = new TotalPurchaseAmount(totalPurchaseAmount, PRICE_OF_LOTTO);
         this.countOfManualPurchase = new CountOfManualPurchase(manualLottosInput.size(), this.totalPurchaseAmount.getTotalPurchaseAmount());
         this.lotteryTicket = new LotteryTicket(initializePreprocessedLotteryTicket(getCountOfAutoPurchase(), manualLottosInput));
@@ -90,7 +90,7 @@ public class VendingMachine {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        VendingMachine that = (VendingMachine) o;
+        LottoMachine that = (LottoMachine) o;
         return Objects.equals(lotteryTicket, that.lotteryTicket) && Objects.equals(totalPurchaseAmount, that.totalPurchaseAmount) && Objects.equals(countOfManualPurchase, that.countOfManualPurchase);
     }
 

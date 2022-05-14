@@ -14,7 +14,7 @@ import static model.lotto.vo.Rank.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-class VendingMachineTest {
+class LottoMachineTest {
 
     @Test
     @DisplayName("생성자로 부터 입력 받은 자동 로또 횟수로 만든 자동 로또와, 입력받은 수동 로또로 만든 lottos를 반환한다.")
@@ -25,10 +25,10 @@ class VendingMachineTest {
                 new LottoDto(List.of(1, 2, 3, 4, 5, 6)),
                 new LottoDto(List.of(11, 12, 13, 14, 15, 16))
         );
-        VendingMachine vendingMachine = new VendingMachine(totalPurchaseAmount, manualLottosInput);
+        LottoMachine lottoMachine = new LottoMachine(totalPurchaseAmount, manualLottosInput);
         int expectSize = 10;
         //when
-        List<LottoDto> actual = vendingMachine.getInformationOfLottos();
+        List<LottoDto> actual = lottoMachine.getInformationOfLottos();
 
         //then
         assertThat(actual.size()).isEqualTo(expectSize);
@@ -43,10 +43,10 @@ class VendingMachineTest {
                 new LottoDto(List.of(1, 2, 3, 4, 5, 6)),
                 new LottoDto(List.of(11, 12, 13, 14, 15, 16))
         );
-        VendingMachine vendingMachine = new VendingMachine(totalPurchaseAmount, manualLottosInput);
+        LottoMachine lottoMachine = new LottoMachine(totalPurchaseAmount, manualLottosInput);
         int expect = 2;
         //when
-        int actual = vendingMachine.getCountOfManualPurchase();
+        int actual = lottoMachine.getCountOfManualPurchase();
 
         //then
         assertThat(actual).isEqualTo(expect);
@@ -61,11 +61,11 @@ class VendingMachineTest {
                 new LottoDto(List.of(1, 2, 3, 4, 5, 6)),
                 new LottoDto(List.of(11, 12, 13, 14, 15, 16))
         );
-        VendingMachine vendingMachine = new VendingMachine(totalPurchaseAmount, manualLottosInput);
+        LottoMachine lottoMachine = new LottoMachine(totalPurchaseAmount, manualLottosInput);
         int expect = 8;
 
         //when
-        int actual = vendingMachine.getCountOfAutoPurchase();
+        int actual = lottoMachine.getCountOfAutoPurchase();
 
         //then
         assertThat(actual).isEqualTo(expect);
@@ -84,7 +84,7 @@ class VendingMachineTest {
                 new LottoDto(List.of(1, 2, 3, 4, 44, 45)),
                 new LottoDto(List.of(1, 2, 3, 45, 44, 43))
         );
-        VendingMachine vendingMachine = new VendingMachine(totalPurchaseAmount, manualLottosInput);
+        LottoMachine lottoMachine = new LottoMachine(totalPurchaseAmount, manualLottosInput);
 
         Lotto winningLottoInput = LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = LottoNumber.valueOf(7);
@@ -93,7 +93,7 @@ class VendingMachineTest {
         int expectFrequencyOfRank = 1;
 
         //when
-        LotteryResult actual = vendingMachine.getLotteryResult(winningLotto);
+        LotteryResult actual = lottoMachine.getLotteryResult(winningLotto);
 
         //then
         assertAll(
