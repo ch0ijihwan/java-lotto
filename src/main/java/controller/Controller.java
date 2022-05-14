@@ -1,7 +1,7 @@
 package controller;
 
+import model.LotteryGame;
 import model.LotteryResult;
-import model.LottoMachine;
 import model.dto.LottoDto;
 import model.factory.LottoFactory;
 import model.lotto.WinningLotto;
@@ -22,27 +22,27 @@ public class Controller {
     }
 
     public void run() {
-        LottoMachine lottoMachine = createVendingMachine();
-        displayPurchasedLotteryTicket(lottoMachine);
+        LotteryGame lotteryGame = createVendingMachine();
+        displayPurchasedLotteryTicket(lotteryGame);
         WinningLotto winningLotto = new WinningLotto(LottoFactory.createManualLotto(input.inputWiningLotto()), LottoNumber.valueOf(input.inputBonusNumber()));
-        displayLotteryResult(lottoMachine, winningLotto);
+        displayLotteryResult(lotteryGame, winningLotto);
     }
 
-    private LottoMachine createVendingMachine() {
+    private LotteryGame createVendingMachine() {
         int totalPurchaseAmount = input.inputTotalPurchaseAmount();
         CountOfManualPurchase countOfManualPurchase = new CountOfManualPurchase(input.inputCountOfManualPurchase(), totalPurchaseAmount);
         int countOfManualLottoInputs = countOfManualPurchase.getValue();
         List<LottoDto> informationManualLottos = input.inputManualLottoNumbers(countOfManualLottoInputs);
-        return new LottoMachine(totalPurchaseAmount, informationManualLottos);
+        return new LotteryGame(totalPurchaseAmount, informationManualLottos);
     }
 
-    private void displayPurchasedLotteryTicket(final LottoMachine lottoMachine) {
-        display.displayPurchaseCount(lottoMachine.getCountOfAutoPurchase(), lottoMachine.getCountOfManualPurchase());
-        display.displayLotteryTicket(lottoMachine.getInformationOfLottos());
+    private void displayPurchasedLotteryTicket(final LotteryGame lotteryGame) {
+        display.displayPurchaseCount(lotteryGame.getCountOfAutoPurchase(), lotteryGame.getCountOfManualPurchase());
+        display.displayLotteryTicket(lotteryGame.getInformationOfLottos());
     }
 
-    private void displayLotteryResult(final LottoMachine lottoMachine, final WinningLotto winningLotto) {
-        LotteryResult lotteryResult = lottoMachine.getLotteryResult(winningLotto);
+    private void displayLotteryResult(final LotteryGame lotteryGame, final WinningLotto winningLotto) {
+        LotteryResult lotteryResult = lotteryGame.getLotteryResult(winningLotto);
         display.displayLotteryResult(lotteryResult.getRankAndFrequencyNumber());
         display.displayRateOfProfit(lotteryResult.getRateOfProfit());
     }

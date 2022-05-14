@@ -17,7 +17,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class LottoMachine {
+public class LotteryGame {
 
     private static final int PRICE_OF_LOTTO = 1000;
 
@@ -25,10 +25,10 @@ public class LottoMachine {
     private final TotalPurchaseAmount totalPurchaseAmount;
     private final CountOfManualPurchase countOfManualPurchase;
 
-    public LottoMachine(final int totalPurchaseAmount, final List<LottoDto> manualLottosInput) {
+    public LotteryGame(final int totalPurchaseAmount, final List<LottoDto> informationOfManualLottos) {
         this.totalPurchaseAmount = new TotalPurchaseAmount(totalPurchaseAmount, PRICE_OF_LOTTO);
-        this.countOfManualPurchase = new CountOfManualPurchase(manualLottosInput.size(), this.totalPurchaseAmount.getTotalPurchaseAmount());
-        this.lotteryTicket = new LotteryTicket(initializePreprocessedLotteryTicket(getCountOfAutoPurchase(), manualLottosInput));
+        this.countOfManualPurchase = new CountOfManualPurchase(informationOfManualLottos.size(), this.totalPurchaseAmount.getTotalPurchaseAmount());
+        this.lotteryTicket = new LotteryTicket(initializePreprocessedLotteryTicket(getCountOfAutoPurchase(), informationOfManualLottos));
     }
 
 
@@ -90,7 +90,7 @@ public class LottoMachine {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LottoMachine that = (LottoMachine) o;
+        LotteryGame that = (LotteryGame) o;
         return Objects.equals(lotteryTicket, that.lotteryTicket) && Objects.equals(totalPurchaseAmount, that.totalPurchaseAmount) && Objects.equals(countOfManualPurchase, that.countOfManualPurchase);
     }
 
