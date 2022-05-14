@@ -16,7 +16,7 @@ class LotteryTicketTest {
 
     @Test
     @DisplayName("로또들을 반환한다.")
-    void getLottos() {
+    void getLotteryTicket() {
         //given
         List<Lotto> input = List.of(
                 LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 5, 6)),
@@ -25,7 +25,7 @@ class LotteryTicketTest {
         LotteryTicket lotteryTicket = new LotteryTicket(input);
 
         //when
-        List<Lotto> actual = lotteryTicket.getLottos();
+        List<Lotto> actual = lotteryTicket.getLotteryTicket();
 
         //then
         assertThat(actual).isEqualTo(input);

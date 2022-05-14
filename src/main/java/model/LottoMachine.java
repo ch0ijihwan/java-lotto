@@ -60,7 +60,7 @@ public class LottoMachine {
     }
 
     public List<LottoDto> getInformationOfLottos() {
-        return lotteryTicket.getLottos()
+        return lotteryTicket.getLotteryTicket()
                 .stream()
                 .map(this::createLottoDto)
                 .collect(Collectors.toUnmodifiableList());

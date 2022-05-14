@@ -10,19 +10,19 @@ import java.util.stream.Collectors;
 
 public class LotteryTicket {
 
-    private final List<Lotto> lottos;
+    private final List<Lotto> lotteryTicket;
 
-    public LotteryTicket(final List<Lotto> lottos) {
-        this.lottos = lottos;
+    public LotteryTicket(final List<Lotto> lotteryTicket) {
+        this.lotteryTicket = lotteryTicket;
     }
 
 
-    public List<Lotto> getLottos() {
-        return new ArrayList<>(lottos);
+    public List<Lotto> getLotteryTicket() {
+        return new ArrayList<>(lotteryTicket);
     }
 
     public List<Rank> getMatchingResult(final WinningLotto winningLotto) {
-        return lottos.stream()
+        return lotteryTicket.stream()
                 .map(winningLotto::judgeRank)
                 .collect(Collectors.toUnmodifiableList());
     }
@@ -32,11 +32,11 @@ public class LotteryTicket {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LotteryTicket otherLotteryTicket = (LotteryTicket) o;
-        return lottos.containsAll(otherLotteryTicket.lottos);
+        return lotteryTicket.containsAll(otherLotteryTicket.lotteryTicket);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lottos);
+        return Objects.hash(lotteryTicket);
     }
 }
