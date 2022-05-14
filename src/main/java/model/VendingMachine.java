@@ -81,7 +81,8 @@ public class VendingMachine {
     public LotteryResult getLotteryResult(final WinningLotto winningLotto) {
         List<Rank> matchingResult = lotteryTicket.getMatchingResult(winningLotto);
         Map<Rank, Integer> rankAndFrequency = matchingResult.stream()
-                .collect(Collectors.toUnmodifiableMap(rank -> rank, rank -> Collections.frequency(matchingResult, rank)));
+                .collect(Collectors.toUnmodifiableMap(rank -> rank, rank -> Collections.frequency(matchingResult, rank),
+                        ((rankOfAlreadyExists, addRank) -> rankOfAlreadyExists)));
         return new LotteryResult(rankAndFrequency, totalPurchaseAmount);
     }
 
