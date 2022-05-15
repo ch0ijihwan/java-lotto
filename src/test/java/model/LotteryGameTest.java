@@ -2,7 +2,7 @@ package model;
 
 import model.dto.LottoDto;
 import model.factory.LottoFactory;
-import model.lotto.WinningLotto;
+import model.lotto.LastWinningLotto;
 import model.lotto.vo.Lotto;
 import model.lotto.vo.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
@@ -88,12 +88,12 @@ class LotteryGameTest {
 
         Lotto winningLottoInput = LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = LottoNumber.valueOf(7);
-        WinningLotto winningLotto = new WinningLotto(winningLottoInput, bonusNumber);
+        LastWinningLotto lastWinningLotto = new LastWinningLotto(winningLottoInput, bonusNumber);
 
         int expectFrequencyOfRank = 1;
 
         //when
-        LotteryResult actual = lotteryGame.getLotteryResult(winningLotto);
+        LotteryResult actual = lotteryGame.getLotteryResult(lastWinningLotto);
 
         //then
         assertAll(

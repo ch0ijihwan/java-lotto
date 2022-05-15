@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-class WinningLottoTest {
+class LastWinningLottoTest {
 
     @Test
     @DisplayName("보너스 넘버와 당첨 로또 넘버는 중복 될 수 없습니다.")
@@ -26,7 +26,7 @@ class WinningLottoTest {
         LottoNumber bonusNumber = LottoNumber.valueOf(6);
 
         //then
-        assertThatIllegalArgumentException().isThrownBy(() -> new WinningLotto(winningLottoInput, bonusNumber))
+        assertThatIllegalArgumentException().isThrownBy(() -> new LastWinningLotto(winningLottoInput, bonusNumber))
                 .withMessage("보너스 넘버와 당첨 로또 넘버는 중복 될 수 없습니다.");
     }
 
@@ -37,10 +37,10 @@ class WinningLottoTest {
         //given
         Lotto winningLottoInput = LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = LottoNumber.valueOf(7);
-        WinningLotto winningLotto = new WinningLotto(winningLottoInput, bonusNumber);
+        LastWinningLotto lastWinningLotto = new LastWinningLotto(winningLottoInput, bonusNumber);
 
         //when
-        Rank actual = winningLotto.judgeRank(lottoToCompare);
+        Rank actual = lastWinningLotto.judgeRank(lottoToCompare);
 
         //then
         assertThat(actual).isEqualTo(expect);

@@ -6,14 +6,14 @@ import model.lotto.vo.Rank;
 
 import java.util.Objects;
 
-public class WinningLotto {
+public class LastWinningLotto {
 
     private static final int COUNT_FOR_BONUS_NUMBER_DETERMINATION = 5;
 
     private final Lotto winningLotto;
     private final LottoNumber bonsNumber;
 
-    public WinningLotto(final Lotto winningLottoInput, final LottoNumber bonusNumber) {
+    public LastWinningLotto(final Lotto winningLottoInput, final LottoNumber bonusNumber) {
         validateDuplicationWithBonusNumber(winningLottoInput, bonusNumber);
         this.winningLotto = winningLottoInput;
         this.bonsNumber = bonusNumber;
@@ -50,7 +50,7 @@ public class WinningLotto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        WinningLotto that = (WinningLotto) o;
+        LastWinningLotto that = (LastWinningLotto) o;
         return Objects.equals(winningLotto, that.winningLotto) && Objects.equals(bonsNumber, that.bonsNumber);
     }
 

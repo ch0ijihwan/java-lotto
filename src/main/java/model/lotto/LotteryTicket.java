@@ -21,9 +21,9 @@ public class LotteryTicket {
         return new ArrayList<>(lotteryTicket);
     }
 
-    public List<Rank> getMatchingResult(final WinningLotto winningLotto) {
+    public List<Rank> getMatchingResult(final LastWinningLotto lastWinningLotto) {
         return lotteryTicket.stream()
-                .map(winningLotto::judgeRank)
+                .map(lastWinningLotto::judgeRank)
                 .collect(Collectors.toUnmodifiableList());
     }
 

@@ -37,7 +37,7 @@ class LotteryTicketTest {
         //given
         Lotto winningLottoInput = LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = LottoNumber.valueOf(7);
-        WinningLotto winningLotto = new WinningLotto(winningLottoInput, bonusNumber);
+        LastWinningLotto lastWinningLotto = new LastWinningLotto(winningLottoInput, bonusNumber);
 
         List<Lotto> input = List.of(
                 LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 5, 6)),
@@ -49,7 +49,7 @@ class LotteryTicketTest {
         List<Rank> expect = List.of(FIRST, SECOND, THIRD, FIFTH);
 
         //when
-        List<Rank> actual = lotteryTicket.getMatchingResult(winningLotto);
+        List<Rank> actual = lotteryTicket.getMatchingResult(lastWinningLotto);
 
         //then
         assertThat(actual).isEqualTo(expect);

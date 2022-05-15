@@ -4,7 +4,7 @@ import model.LotteryGame;
 import model.LotteryResult;
 import model.dto.LottoDto;
 import model.factory.LottoFactory;
-import model.lotto.WinningLotto;
+import model.lotto.LastWinningLotto;
 import model.lotto.vo.LottoNumber;
 import model.purchase.CountOfManualPurchase;
 import view.display.Display;
@@ -24,8 +24,8 @@ public class Controller {
     public void run() {
         LotteryGame lotteryGame = createVendingMachine();
         displayPurchasedLotteryTicket(lotteryGame);
-        WinningLotto winningLotto = new WinningLotto(LottoFactory.createManualLotto(input.inputWiningLotto()), LottoNumber.valueOf(input.inputBonusNumber()));
-        displayLotteryResult(lotteryGame, winningLotto);
+        LastWinningLotto lastWinningLotto = new LastWinningLotto(LottoFactory.createManualLotto(input.inputWiningLotto()), LottoNumber.valueOf(input.inputBonusNumber()));
+        displayLotteryResult(lotteryGame, lastWinningLotto);
     }
 
     private LotteryGame createVendingMachine() {
@@ -41,8 +41,8 @@ public class Controller {
         display.displayLotteryTicket(lotteryGame.getInformationOfLottos());
     }
 
-    private void displayLotteryResult(final LotteryGame lotteryGame, final WinningLotto winningLotto) {
-        LotteryResult lotteryResult = lotteryGame.getLotteryResult(winningLotto);
+    private void displayLotteryResult(final LotteryGame lotteryGame, final LastWinningLotto lastWinningLotto) {
+        LotteryResult lotteryResult = lotteryGame.getLotteryResult(lastWinningLotto);
         display.displayLotteryResult(lotteryResult.getRankAndFrequencyNumber());
         display.displayRateOfProfit(lotteryResult.getRateOfProfit());
     }

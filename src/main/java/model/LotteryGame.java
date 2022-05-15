@@ -2,8 +2,8 @@ package model;
 
 import model.dto.LottoDto;
 import model.factory.LottoFactory;
+import model.lotto.LastWinningLotto;
 import model.lotto.LotteryTicket;
-import model.lotto.WinningLotto;
 import model.lotto.vo.Lotto;
 import model.lotto.vo.LottoNumber;
 import model.lotto.vo.Rank;
@@ -78,8 +78,8 @@ public class LotteryGame {
         return countOfManualPurchase.getCountFoManualPurchase();
     }
 
-    public LotteryResult getLotteryResult(final WinningLotto winningLotto) {
-        List<Rank> matchingResult = lotteryTicket.getMatchingResult(winningLotto);
+    public LotteryResult getLotteryResult(final LastWinningLotto lastWinningLotto) {
+        List<Rank> matchingResult = lotteryTicket.getMatchingResult(lastWinningLotto);
         Map<Rank, Integer> rankAndFrequency = matchingResult.stream()
                 .collect(Collectors.toUnmodifiableMap(rank -> rank, rank -> Collections.frequency(matchingResult, rank),
                         ((rankOfAlreadyExists, addRank) -> rankOfAlreadyExists)));
