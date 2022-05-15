@@ -26,7 +26,7 @@ public class CountOfManualPurchase {
         }
     }
 
-    public int getValue() {
+    public int getCountFoManualPurchase() {
         return value;
     }
 

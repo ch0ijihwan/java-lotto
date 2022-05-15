@@ -46,7 +46,7 @@ class CountOfManualPurchaseTest {
                 = new CountOfManualPurchase(countOfManualPurchaseInput, countOfTotalPurchaseInput);
 
         //when
-        int actual = countOfManualPurchase.getValue();
+        int actual = countOfManualPurchase.getCountFoManualPurchase();
 
         //then
         assertThat(actual).isEqualTo(expect);
