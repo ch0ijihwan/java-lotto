@@ -3,11 +3,11 @@ package model.dto;
 import java.util.Collections;
 import java.util.List;
 
-public class WinningLottoDto {
+public class LastWinningLottoDto {
     private final List<Integer> lottoNumbers;
     private final int bonusNumber;
 
-    public WinningLottoDto(final List<Integer> lottoNumbers, final int bonusNumber) {
+    public LastWinningLottoDto(final List<Integer> lottoNumbers, final int bonusNumber) {
         this.lottoNumbers = lottoNumbers;
         this.bonusNumber = bonusNumber;
     }

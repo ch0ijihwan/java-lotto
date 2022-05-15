@@ -31,7 +31,7 @@ public class Controller {
     private LotteryGame createVendingMachine() {
         int totalPurchaseAmount = input.inputTotalPurchaseAmount();
         CountOfManualPurchase countOfManualPurchase = new CountOfManualPurchase(input.inputCountOfManualPurchase(), totalPurchaseAmount);
-        int countOfManualLottoInputs = countOfManualPurchase.getCountFoManualPurchase();
+        int countOfManualLottoInputs = countOfManualPurchase.getCountOfManualPurchase();
         List<LottoDto> informationOfManualLottos = input.inputManualLottoNumbers(countOfManualLottoInputs);
         return new LotteryGame(totalPurchaseAmount, informationOfManualLottos);
     }

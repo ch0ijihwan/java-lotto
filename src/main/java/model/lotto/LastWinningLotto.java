@@ -32,7 +32,7 @@ public class LastWinningLotto {
     }
 
     public Rank judgeRank(final Lotto lottoToCompare) {
-        int matchingCount = this.winningLotto.countMatchingNumber(lottoToCompare);
+        int matchingCount = this.winningLotto.countBingo(lottoToCompare);
         return Rank.valueOf(matchingCount, getBonusStatus(lottoToCompare, matchingCount));
     }
 

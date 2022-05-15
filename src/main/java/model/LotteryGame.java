@@ -56,7 +56,7 @@ public class LotteryGame {
     }
 
     public int getCountOfAutoPurchase() {
-        return totalPurchaseAmount.getCountOfTotalPurchase() - countOfManualPurchase.getCountFoManualPurchase();
+        return totalPurchaseAmount.getCountOfTotalPurchase() - countOfManualPurchase.getCountOfManualPurchase();
     }
 
     public List<LottoDto> getInformationOfLottos() {
@@ -75,7 +75,7 @@ public class LotteryGame {
     }
 
     public int getCountOfManualPurchase() {
-        return countOfManualPurchase.getCountFoManualPurchase();
+        return countOfManualPurchase.getCountOfManualPurchase();
     }
 
     public LotteryResult getLotteryResult(final LastWinningLotto lastWinningLotto) {

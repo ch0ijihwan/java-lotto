@@ -42,7 +42,7 @@ public class ConsoleDisplay implements Display {
         if (rank == Rank.SECOND && matchedCount == SECOND_THRESHOLD) {
             bonusMessage = BONUS_MATCHING_MESSAGE;
         }
-        System.out.printf(RESULT_OF_MATCHING_LOTTO_MESSAGE, rank.getMatchingCount(), bonusMessage, rank.getReward(), matchedCount);
+        System.out.printf(RESULT_OF_MATCHING_LOTTO_MESSAGE, rank.getCountOfBingo(), bonusMessage, rank.getReward(), matchedCount);
     }
 
     @Override

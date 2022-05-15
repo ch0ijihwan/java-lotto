@@ -19,8 +19,8 @@ public enum Rank {
     private final int matchingCount;
     private final int reward;
 
-    Rank(final int matchingCount, final int reward) {
-        this.matchingCount = matchingCount;
+    Rank(final int CountOfBingo, final int reward) {
+        this.matchingCount = CountOfBingo;
         this.reward = reward;
     }
 
@@ -53,7 +53,7 @@ public enum Rank {
         return reward;
     }
 
-    public int getMatchingCount() {
+    public int getCountOfBingo() {
         return matchingCount;
     }
 }

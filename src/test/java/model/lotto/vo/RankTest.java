@@ -70,7 +70,7 @@ class RankTest {
         int expect = 3;
 
         //when
-        int actual = FIFTH.getMatchingCount();
+        int actual = FIFTH.getCountOfBingo();
 
         //then
         assertThat(actual).isEqualTo(expect);

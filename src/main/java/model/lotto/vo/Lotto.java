@@ -35,7 +35,7 @@ public class Lotto {
         }
     }
 
-    public int countMatchingNumber(final Lotto otherLotto) {
+    public int countBingo(final Lotto otherLotto) {
         List<LottoNumber> otherLottoNumbers = otherLotto.lottoNumbers;
 
         return (int) lottoNumbers.stream()

@@ -72,7 +72,7 @@ class LottoTest {
         Lotto lotto = new Lotto(input);
 
         //when
-        int actual = lotto.countMatchingNumber(otherLotto);
+        int actual = lotto.countBingo(otherLotto);
 
         //then
         assertThat(actual).isEqualTo(expect);
