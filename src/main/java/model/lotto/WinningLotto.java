@@ -20,12 +20,12 @@ public class WinningLotto {
     }
 
     private void validateDuplicationWithBonusNumber(final Lotto winningLottoInput, final LottoNumber bonusNumber) {
-        if (isAnyMatch(winningLottoInput, bonusNumber)) {
+        if (isAnyDuplication(winningLottoInput, bonusNumber)) {
             throw new IllegalArgumentException("보너스 넘버와 당첨 로또 넘버는 중복 될 수 없습니다.");
         }
     }
 
-    private boolean isAnyMatch(final Lotto winningLottoInput, final LottoNumber bonusNumber) {
+    private boolean isAnyDuplication(final Lotto winningLottoInput, final LottoNumber bonusNumber) {
         return winningLottoInput.getLottoNumbers()
                 .stream()
                 .anyMatch(lottoNumber -> lottoNumber.equals(bonusNumber));
