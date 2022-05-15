@@ -28,7 +28,7 @@ class LotteryGameTest {
         LotteryGame lotteryGame = new LotteryGame(totalPurchaseAmount, manualLottosInput);
         int expectSize = 10;
         //when
-        List<LottoDto> actual = lotteryGame.getInformationOfLottos();
+        List<Lotto> actual = lotteryGame.getInformationOfLottos();
 
         //then
         assertThat(actual.size()).isEqualTo(expectSize);

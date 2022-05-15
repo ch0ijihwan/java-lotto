@@ -5,7 +5,6 @@ import model.factory.LottoFactory;
 import model.lotto.LastWinningLotto;
 import model.lotto.LotteryTicket;
 import model.lotto.vo.Lotto;
-import model.lotto.vo.LottoNumber;
 import model.lotto.vo.Rank;
 import model.purchase.CountOfManualPurchase;
 import model.purchase.TotalPurchaseAmount;
@@ -59,20 +58,12 @@ public class LotteryGame {
         return totalPurchaseAmount.getCountOfTotalPurchase() - countOfManualPurchase.getCountOfManualPurchase();
     }
 
-    public List<LottoDto> getInformationOfLottos() {
+    public List<Lotto> getInformationOfLottos() {// TODO: 2022/05/15 수정
         return lotteryTicket.getLotteryTicket()
                 .stream()
-                .map(this::createLottoDto)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private LottoDto createLottoDto(final Lotto lotto) {
-        List<Integer> lottoNumbers = lotto.getLottoNumbers()
-                .stream()
-                .map(LottoNumber::getValue)
-                .collect(Collectors.toUnmodifiableList());
-        return new LottoDto(lottoNumbers);
-    }
 
     public int getCountOfManualPurchase() {
         return countOfManualPurchase.getCountOfManualPurchase();

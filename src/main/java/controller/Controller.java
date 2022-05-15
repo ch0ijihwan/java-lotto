@@ -5,12 +5,14 @@ import model.LotteryResult;
 import model.dto.LottoDto;
 import model.factory.LottoFactory;
 import model.lotto.LastWinningLotto;
+import model.lotto.vo.Lotto;
 import model.lotto.vo.LottoNumber;
 import model.purchase.CountOfManualPurchase;
 import view.display.Display;
 import view.input.Input;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Controller {
     private final Input input;
@@ -38,7 +40,19 @@ public class Controller {
 
     private void displayPurchasedLotteryTicket(final LotteryGame lotteryGame) {
         display.displayPurchaseCount(lotteryGame.getCountOfAutoPurchase(), lotteryGame.getCountOfManualPurchase());
-        display.displayLotteryTicket(lotteryGame.getInformationOfLottos());
+        List<LottoDto> lottoDtos = lotteryGame.getInformationOfLottos()
+                .stream()
+                .map(this::createLottoDto)
+                .collect(Collectors.toUnmodifiableList());
+        display.displayLotteryTicket(lottoDtos);
+    }
+
+    private LottoDto createLottoDto(final Lotto lotto) {
+        List<Integer> lottoNumbers = lotto.getLottoNumbers()
+                .stream()
+                .map(LottoNumber::getValue)
+                .collect(Collectors.toUnmodifiableList());
+        return new LottoDto(lottoNumbers);
     }
 
     private void displayLotteryResult(final LotteryGame lotteryGame, final LastWinningLotto lastWinningLotto) {

@@ -10,7 +10,7 @@ public class ConsoleDisplay implements Display {
 
     private static final int NON_MATCHED = 0;
     private static final int SECOND_THRESHOLD = 0;
-    private static final String COUNT_OF_LOTTO_MESSAGE = "자동 로또 %d개, 수동 로또 %d개를 구매하였습니다.\n && ";
+    private static final String COUNT_OF_LOTTO_MESSAGE = "자동 로또 %d개, 수동 로또 %d개를 구매하였습니다.\n";
     private static final String RESULT_OF_MATCHING_LOTTO_MESSAGE = "%d 개 일치 %s ( %d 원) - %d \n";
     private static final String RATE_OF_PROFIT_MESSAGE = "총 수익률은 %f 입니다.\n";
     private static final String BONUS_MATCHING_MESSAGE = ", 보너스 일치";
