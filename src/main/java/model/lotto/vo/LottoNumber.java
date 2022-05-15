@@ -24,7 +24,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
         return CACHED_ALL_LOTTO_NUMBERS.get(value);
     }
 
-    private static void validateRange(int value) {
+    private static void validateRange(final int value) {
         if (value < MIN_LOTTO_NUMBER || value > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(String.format("로또 넘버는 %d에서 %d 까지어야 합니다.", MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER));
         }
