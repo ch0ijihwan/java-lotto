@@ -58,7 +58,7 @@ public class LotteryGame {
         return totalPurchaseAmount.getCountOfTotalPurchase() - countOfManualPurchase.getCountOfManualPurchase();
     }
 
-    public List<Lotto> getInformationOfLottos() {// TODO: 2022/05/15 수정
+    public List<Lotto> getInformationOfLottos() {
         return lotteryTicket.getLotteryTicket()
                 .stream()
                 .collect(Collectors.toUnmodifiableList());
@@ -73,7 +73,7 @@ public class LotteryGame {
         List<Rank> matchingResult = lotteryTicket.getMatchingResult(lastWinningLotto);
         Map<Rank, Integer> rankAndFrequency = matchingResult.stream()
                 .collect(Collectors.toUnmodifiableMap(rank -> rank, rank -> Collections.frequency(matchingResult, rank),
-                        ((rankOfAlreadyExists, addRank) -> rankOfAlreadyExists)));
+                        ((rankOfAlreadyExists, addedRank) -> rankOfAlreadyExists)));
         return new LotteryResult(rankAndFrequency, totalPurchaseAmount);
     }
 

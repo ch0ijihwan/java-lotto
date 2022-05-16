@@ -31,7 +31,7 @@ class LotteryGameTest {
         List<Lotto> actual = lotteryGame.getInformationOfLottos();
 
         //then
-        assertThat(actual.size()).isEqualTo(expectSize);
+        assertThat(actual).hasSize(expectSize);
     }
 
     @Test

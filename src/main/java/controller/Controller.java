@@ -24,13 +24,14 @@ public class Controller {
     }
 
     public void run() {
-        LotteryGame lotteryGame = createVendingMachine();
+        LotteryGame lotteryGame = createLotteryGame();
         displayPurchasedLotteryTicket(lotteryGame);
-        LastWinningLotto lastWinningLotto = new LastWinningLotto(LottoFactory.createManualLotto(input.inputWiningLotto()), LottoNumber.valueOf(input.inputBonusNumber()));
+        LastWinningLotto lastWinningLotto = new LastWinningLotto(LottoFactory.createManualLotto(input.inputWiningLotto()),
+                LottoNumber.valueOf(input.inputBonusNumber()));
         displayLotteryResult(lotteryGame, lastWinningLotto);
     }
 
-    private LotteryGame createVendingMachine() {
+    private LotteryGame createLotteryGame() {
         int totalPurchaseAmount = input.inputTotalPurchaseAmount();
         CountOfManualPurchase countOfManualPurchase = new CountOfManualPurchase(input.inputCountOfManualPurchase(), totalPurchaseAmount);
         int countOfManualLottoInputs = countOfManualPurchase.getCountOfManualPurchase();

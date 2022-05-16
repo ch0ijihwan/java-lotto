@@ -63,7 +63,7 @@ class LottoTest {
     @ParameterizedTest
     @DisplayName("로또 하나를 입력 받고, 해당 로또 번호와 비교하여 매칭하는 로또 번호의 갯수를 반환한다.")
     @MethodSource("createLottoAndMatchingCountParameterProvider")
-    void countMatchingNumber(final Lotto otherLotto, final int expect) {
+    void match(final Lotto otherLotto, final int expect) {
         //given
         List<LottoNumber> input = List.of(
                 LottoNumber.valueOf(1), LottoNumber.valueOf(2), LottoNumber.valueOf(3),
@@ -72,7 +72,7 @@ class LottoTest {
         Lotto lotto = new Lotto(input);
 
         //when
-        int actual = lotto.countBingo(otherLotto);
+        int actual = lotto.match(otherLotto);
 
         //then
         assertThat(actual).isEqualTo(expect);

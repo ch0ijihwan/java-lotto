@@ -35,17 +35,10 @@ public class Lotto {
         }
     }
 
-    public int countBingo(final Lotto otherLotto) {
-        List<LottoNumber> otherLottoNumbers = otherLotto.lottoNumbers;
-
+    public int match(final Lotto otherLotto) {
         return (int) lottoNumbers.stream()
-                .filter(lottoNumber -> isAnyMatch(otherLottoNumbers, lottoNumber))
+                .filter(otherLotto.lottoNumbers::contains)
                 .count();
-    }
-
-    private boolean isAnyMatch(final List<LottoNumber> otherLottoNumbers, final LottoNumber lottoNumber) {
-        return otherLottoNumbers.stream()
-                .anyMatch(lottoNumber::equals);
     }
 
     public List<LottoNumber> getLottoNumbers() {
