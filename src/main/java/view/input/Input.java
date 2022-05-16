@@ -1,7 +1,7 @@
 package view.input;
 
 
-import model.dto.LottoDto;
+import controller.dto.LottoDto;
 
 import java.util.List;
 

@@ -1,9 +1,5 @@
 package model.lotto;
 
-import model.lotto.vo.Lotto;
-import model.lotto.vo.LottoNumber;
-import model.lotto.vo.Rank;
-
 import java.util.Objects;
 
 public class LastWinningLotto {

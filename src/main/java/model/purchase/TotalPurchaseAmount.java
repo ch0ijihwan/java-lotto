@@ -26,7 +26,7 @@ public class TotalPurchaseAmount {
         }
     }
 
-    public int getCountOfTotalPurchase() {
+    public int calculateCountOfTotalPurchase() {
         return totalPurchaseAmount / lottoPrice;
     }
 

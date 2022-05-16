@@ -1,8 +1,5 @@
 package model.lotto;
 
-import model.lotto.vo.Lotto;
-import model.lotto.vo.Rank;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

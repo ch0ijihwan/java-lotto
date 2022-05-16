@@ -1,7 +1,7 @@
 package view.display;
 
-import model.dto.LottoDto;
-import model.lotto.vo.Rank;
+import controller.dto.LottoDto;
+import model.lotto.Rank;
 
 import java.util.List;
 import java.util.Map;

@@ -1,15 +1,12 @@
 package model.lotto;
 
-import model.factory.LottoFactory;
-import model.lotto.vo.Lotto;
-import model.lotto.vo.LottoNumber;
-import model.lotto.vo.Rank;
+import model.lotto.factory.LottoFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static model.lotto.vo.Rank.*;
+import static model.lotto.Rank.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LotteryTicketTest {

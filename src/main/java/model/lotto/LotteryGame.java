@@ -1,13 +1,10 @@
-package model;
+package model.lotto;
 
-import model.dto.LottoDto;
-import model.factory.LottoFactory;
-import model.lotto.LastWinningLotto;
-import model.lotto.LotteryTicket;
-import model.lotto.vo.Lotto;
-import model.lotto.vo.Rank;
+import controller.dto.LottoDto;
+import model.lotto.factory.LottoFactory;
 import model.purchase.CountOfManualPurchase;
 import model.purchase.TotalPurchaseAmount;
+import model.result.LotteryResult;
 
 import java.util.Collections;
 import java.util.List;
@@ -55,7 +52,7 @@ public class LotteryGame {
     }
 
     public int getCountOfAutoPurchase() {
-        return totalPurchaseAmount.getCountOfTotalPurchase() - countOfManualPurchase.getCountOfManualPurchase();
+        return totalPurchaseAmount.calculateCountOfTotalPurchase() - countOfManualPurchase.getCountOfManualPurchase();
     }
 
     public List<Lotto> getInformationOfLottos() {
@@ -82,11 +79,11 @@ public class LotteryGame {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LotteryGame that = (LotteryGame) o;
-        return Objects.equals(lotteryTicket, that.lotteryTicket) && Objects.equals(totalPurchaseAmount, that.totalPurchaseAmount) && Objects.equals(countOfManualPurchase, that.countOfManualPurchase);
+        return Objects.equals(lotteryTicket, that.lotteryTicket);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lotteryTicket, totalPurchaseAmount, countOfManualPurchase);
+        return Objects.hash(lotteryTicket);
     }
 }

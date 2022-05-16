@@ -1,7 +1,7 @@
-package model.factory;
+package model.lotto.factory;
 
-import model.lotto.vo.Lotto;
-import model.lotto.vo.LottoNumber;
+import model.lotto.Lotto;
+import model.lotto.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

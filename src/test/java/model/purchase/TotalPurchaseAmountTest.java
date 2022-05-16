@@ -42,7 +42,7 @@ class TotalPurchaseAmountTest {
         int expect = 5;
 
         //when
-        int actual = totalPurchaseAmount.getCountOfTotalPurchase();
+        int actual = totalPurchaseAmount.calculateCountOfTotalPurchase();
 
         //then
         assertThat(actual).isEqualTo(expect);

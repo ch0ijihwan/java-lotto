@@ -1,13 +1,13 @@
 package controller;
 
-import model.LotteryGame;
-import model.LotteryResult;
-import model.dto.LottoDto;
-import model.factory.LottoFactory;
+import controller.dto.LottoDto;
 import model.lotto.LastWinningLotto;
-import model.lotto.vo.Lotto;
-import model.lotto.vo.LottoNumber;
+import model.lotto.LotteryGame;
+import model.lotto.Lotto;
+import model.lotto.LottoNumber;
+import model.lotto.factory.LottoFactory;
 import model.purchase.CountOfManualPurchase;
+import model.result.LotteryResult;
 import view.display.Display;
 import view.input.Input;
 
@@ -59,6 +59,6 @@ public class Controller {
     private void displayLotteryResult(final LotteryGame lotteryGame, final LastWinningLotto lastWinningLotto) {
         LotteryResult lotteryResult = lotteryGame.getLotteryResult(lastWinningLotto);
         display.displayLotteryResult(lotteryResult.getRankAndFrequencyNumber());
-        display.displayRateOfProfit(lotteryResult.getRateOfProfit());
+        display.displayRateOfProfit(lotteryResult.calculateRateOfProfit());
     }
 }

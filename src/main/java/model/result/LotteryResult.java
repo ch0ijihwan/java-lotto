@@ -1,6 +1,6 @@
-package model;
+package model.result;
 
-import model.lotto.vo.Rank;
+import model.lotto.Rank;
 import model.purchase.TotalPurchaseAmount;
 
 import java.util.Map;
@@ -21,18 +21,19 @@ public class LotteryResult {
     }
 
 
-    public double getRateOfProfit() {
+    public double calculateRateOfProfit() {
         int winningAmount = rankAndFrequencyNumber.keySet()
                 .stream()
-                .mapToInt(this::getTotalRewardOfRank)
+                .mapToInt(this::sumUpRewardOfRank)
                 .sum();
 
         return (double) winningAmount / totalPurchaseAmount.getTotalPurchaseAmount();
     }
 
-    private int getTotalRewardOfRank(final Rank rank) {
+    private int sumUpRewardOfRank(final Rank rank) {
         return rank.getReward() * rankAndFrequencyNumber.get(rank);
     }
+
 
     @Override
     public boolean equals(Object o) {

@@ -1,7 +1,8 @@
 package model;
 
-import model.lotto.vo.Rank;
+import model.lotto.Rank;
 import model.purchase.TotalPurchaseAmount;
+import model.result.LotteryResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +42,7 @@ class LotteryResultTest {
         double expect = 12;
 
         //when
-        double actual = lotteryResult.getRateOfProfit();
+        double actual = lotteryResult.calculateRateOfProfit();
 
         //then
         assertThat(actual).isEqualTo(expect);
