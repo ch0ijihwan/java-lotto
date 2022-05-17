@@ -1,5 +1,7 @@
 package model.purchase;
 
+import java.util.Objects;
+
 public class TotalPurchaseAmount {
 
     private static final int MIN_TOTAL_PURCHASE_AMOUNT = 0;
@@ -32,5 +34,18 @@ public class TotalPurchaseAmount {
 
     public int getTotalPurchaseAmount() {
         return totalPurchaseAmount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TotalPurchaseAmount that = (TotalPurchaseAmount) o;
+        return totalPurchaseAmount == that.totalPurchaseAmount && lottoPrice == that.lottoPrice;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(totalPurchaseAmount, lottoPrice);
     }
 }
