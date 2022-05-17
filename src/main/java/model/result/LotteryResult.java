@@ -11,8 +11,8 @@ public class LotteryResult {
     private final Map<Rank, Integer> rankAndFrequencyNumber;
     private final TotalPurchaseAmount totalPurchaseAmount;
 
-    public LotteryResult(final Map<Rank, Integer> rankAndFrequncy, final TotalPurchaseAmount totalPurchaseAmount) {
-        this.rankAndFrequencyNumber = rankAndFrequncy;
+    public LotteryResult(final Map<Rank, Integer> rankAndFrequency, final TotalPurchaseAmount totalPurchaseAmount) {
+        this.rankAndFrequencyNumber = rankAndFrequency;
         this.totalPurchaseAmount = totalPurchaseAmount;
     }
 
