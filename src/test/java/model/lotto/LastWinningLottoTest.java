@@ -1,6 +1,10 @@
 package model.lotto;
 
 import model.lotto.factory.LottoFactory;
+import model.lotto.vo.LastWinningLotto;
+import model.lotto.vo.Lotto;
+import model.lotto.vo.LottoNumber;
+import model.result.vo.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

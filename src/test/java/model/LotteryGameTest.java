@@ -1,18 +1,18 @@
 package model;
 
 import controller.dto.LottoDto;
-import model.lotto.LastWinningLotto;
-import model.lotto.LotteryGame;
-import model.lotto.Lotto;
-import model.lotto.LottoNumber;
+import model.lotto.entity.LotteryGame;
 import model.lotto.factory.LottoFactory;
-import model.result.LotteryResult;
+import model.lotto.vo.LastWinningLotto;
+import model.lotto.vo.Lotto;
+import model.lotto.vo.LottoNumber;
+import model.result.vo.LotteryResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static model.lotto.Rank.*;
+import static model.result.vo.Rank.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 

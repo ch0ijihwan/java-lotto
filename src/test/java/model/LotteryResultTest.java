@@ -1,8 +1,8 @@
 package model;
 
-import model.lotto.Rank;
-import model.purchase.TotalPurchaseAmount;
-import model.result.LotteryResult;
+import model.purchase.vo.TotalPurchaseAmount;
+import model.result.vo.LotteryResult;
+import model.result.vo.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
