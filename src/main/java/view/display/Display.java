@@ -15,4 +15,6 @@ public interface Display {
     void displayLotteryResult(Map<Rank, Integer> lottoGameResult);
 
     void displayRateOfProfit(double profit);
+
+    void displayManualNumbersMessage();
 }

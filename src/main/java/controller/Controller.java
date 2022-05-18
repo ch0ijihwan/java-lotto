@@ -25,18 +25,25 @@ public class Controller {
 
     public void run() {
         LotteryGame lotteryGame = createLotteryGame();
+        inputManulLottos(lotteryGame);
         displayPurchasedLotteryTicket(lotteryGame);
         LastWinningLotto lastWinningLotto = new LastWinningLotto(LottoFactory.createManualLotto(input.inputWiningLotto()),
                 LottoNumber.valueOf(input.inputBonusNumber()));
         displayLotteryResult(lotteryGame, lastWinningLotto);
     }
 
+    private void inputManulLottos(LotteryGame lotteryGame) {
+        display.displayManualNumbersMessage();
+        while (lotteryGame.hasCountOfManualLottos()) {
+            lotteryGame.addManualLotto(LottoFactory.createManualLotto(input.inputManualLottoNumbers2()));
+        }
+    }
+
     private LotteryGame createLotteryGame() {
         int totalPurchaseAmount = input.inputTotalPurchaseAmount();
         CountOfManualPurchase countOfManualPurchase = new CountOfManualPurchase(input.inputCountOfManualPurchase(), totalPurchaseAmount);
         int countOfManualLottoInputs = countOfManualPurchase.getCountOfManualPurchase();
-        List<LottoDto> informationOfManualLottos = input.inputManualLottoNumbers(countOfManualLottoInputs);
-        return new LotteryGame(totalPurchaseAmount, informationOfManualLottos);
+        return new LotteryGame(totalPurchaseAmount, countOfManualLottoInputs);
     }
 
     private void displayPurchasedLotteryTicket(final LotteryGame lotteryGame) {

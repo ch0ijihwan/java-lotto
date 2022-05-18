@@ -1,6 +1,5 @@
 package model;
 
-import controller.dto.LottoDto;
 import model.lotto.entity.LotteryGame;
 import model.lotto.factory.LottoFactory;
 import model.lotto.vo.LastWinningLotto;
@@ -19,21 +18,16 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class LotteryGameTest {
 
     @Test
-    @DisplayName("생성자로 부터 입력 받은 자동 로또 횟수로 만든 자동 로또와, 입력받은 수동 로또로 만든 lottos를 반환한다.")
+    @DisplayName("생성자로 부터 입력 받은 자동 로또 횟수 만큼 자동 로또 리스트를 생성한다..")
     void getInformationOfLottos() {
         //given
         int totalPurchaseAmount = 10000;
-        List<LottoDto> manualLottosInput = List.of(
-                new LottoDto(List.of(1, 2, 3, 4, 5, 6)),
-                new LottoDto(List.of(11, 12, 13, 14, 15, 16))
-        );
-        LotteryGame lotteryGame = new LotteryGame(totalPurchaseAmount, manualLottosInput);
         int expectSize = 10;
         //when
-        List<Lotto> actual = lotteryGame.getInformationOfLottos();
+        LotteryGame actual = new LotteryGame(totalPurchaseAmount, 0);
 
         //then
-        assertThat(actual).hasSize(expectSize);
+        assertThat(actual.getInformationOfLottos()).hasSize(expectSize);
     }
 
     @Test
@@ -41,12 +35,10 @@ class LotteryGameTest {
     void getCountOfManualPurchase() {
         //given
         int totalPurchaseAmount = 10000;
-        List<LottoDto> manualLottosInput = List.of(
-                new LottoDto(List.of(1, 2, 3, 4, 5, 6)),
-                new LottoDto(List.of(11, 12, 13, 14, 15, 16))
-        );
-        LotteryGame lotteryGame = new LotteryGame(totalPurchaseAmount, manualLottosInput);
-        int expect = 2;
+        int input = 5;
+        int expect = 5;
+        LotteryGame lotteryGame = new LotteryGame(totalPurchaseAmount, input);
+
         //when
         int actual = lotteryGame.getCountOfManualPurchase();
 
@@ -59,12 +51,9 @@ class LotteryGameTest {
     void getCountOfAutoPurchase() {
         //given
         int totalPurchaseAmount = 10000;
-        List<LottoDto> manualLottosInput = List.of(
-                new LottoDto(List.of(1, 2, 3, 4, 5, 6)),
-                new LottoDto(List.of(11, 12, 13, 14, 15, 16))
-        );
-        LotteryGame lotteryGame = new LotteryGame(totalPurchaseAmount, manualLottosInput);
-        int expect = 8;
+        int countOManualLottos = 5;
+        int expect = 5;
+        LotteryGame lotteryGame = new LotteryGame(totalPurchaseAmount, countOManualLottos);
 
         //when
         int actual = lotteryGame.getCountOfAutoPurchase();
@@ -78,20 +67,18 @@ class LotteryGameTest {
     @DisplayName("로또 최종 결과를 Map<Rank,Integer> 타입으로 반환한다.")
     void getTotalResultOfLotto() {
         //given
-        int totalPurchaseAmount = 5000;
-        List<LottoDto> manualLottosInput = List.of(
-                new LottoDto(List.of(1, 2, 3, 4, 5, 6)),
-                new LottoDto(List.of(1, 2, 3, 4, 5, 7)),
-                new LottoDto(List.of(1, 2, 3, 4, 5, 45)),
-                new LottoDto(List.of(1, 2, 3, 4, 44, 45)),
-                new LottoDto(List.of(1, 2, 3, 45, 44, 43))
-        );
-        LotteryGame lotteryGame = new LotteryGame(totalPurchaseAmount, manualLottosInput);
+        int totalPurchaseAmount = 10000;
+        LotteryGame lotteryGame = new LotteryGame(totalPurchaseAmount, 5);
+        lotteryGame.addManualLotto(LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 5, 6)));
+        lotteryGame.addManualLotto(LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 5, 7)));
+        lotteryGame.addManualLotto(LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 5, 45)));
+        lotteryGame.addManualLotto(LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 44, 45)));
+        lotteryGame.addManualLotto(LottoFactory.createManualLotto(List.of(1, 2, 3, 45, 44, 43)));
 
         Lotto winningLottoInput = LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = LottoNumber.valueOf(7);
-        LastWinningLotto lastWinningLotto = new LastWinningLotto(winningLottoInput, bonusNumber);
 
+        LastWinningLotto lastWinningLotto = new LastWinningLotto(winningLottoInput, bonusNumber);
         int expectFrequencyOfRank = 1;
 
         //when

@@ -14,6 +14,10 @@ public class CountOfManualPurchase {
         this.value = countOfManualPurchaseInput;
     }
 
+    private CountOfManualPurchase(final int countOfManualPurchase) {
+        this.value = countOfManualPurchase;
+    }
+
     private void validateByTotalPurchaseAmount(final int countOfManualPurchaseInput, final int countOfTotalPurchaseInput) {
         if (countOfManualPurchaseInput > countOfTotalPurchaseInput) {
             throw new IllegalArgumentException("수동 구매 횟수가 전체 구매 가능 횟수보다 큽니다.");
@@ -30,6 +34,10 @@ public class CountOfManualPurchase {
         return value;
     }
 
+    public CountOfManualPurchase decrease() {
+        return new CountOfManualPurchase(getCountOfManualPurchase() - 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,4 +50,5 @@ public class CountOfManualPurchase {
     public int hashCode() {
         return Objects.hash(value);
     }
+
 }
