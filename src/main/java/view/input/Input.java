@@ -14,5 +14,7 @@ public interface Input {
 
     List<LottoDto> inputManualLottoNumbers(int countOfManualPurchase);
 
+    List<Integer> inputManualLottoNumbers2();
+
     List<Integer> inputWiningLotto();
 }

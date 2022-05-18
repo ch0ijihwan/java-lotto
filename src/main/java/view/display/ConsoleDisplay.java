@@ -16,6 +16,7 @@ public class ConsoleDisplay implements Display {
     private static final String BONUS_MATCHING_MESSAGE = ", 보너스 일치";
     private static final String WINNING_STATISTICS = "당첨 통계";
     private static final String MULTI_BARS = "----------";
+    private static final String INPUT_MANUAL_LOTTO_NUMBERS_MESSAGE = "수동으로 구매할 번호를 입력해 주세요";
 
     @Override
     public void displayPurchaseCount(final int countOfAutoPurchase, final int countOfManualPurchase) {
@@ -48,5 +49,10 @@ public class ConsoleDisplay implements Display {
     @Override
     public void displayRateOfProfit(double profit) {
         System.out.printf(RATE_OF_PROFIT_MESSAGE, profit);
+    }
+
+    @Override
+    public void displayManualNumbersMessage() {
+        System.out.println(INPUT_MANUAL_LOTTO_NUMBERS_MESSAGE);
     }
 }

@@ -14,7 +14,7 @@ public class ConsoleInput implements Input {
     private static final String INPUT_TOTAL_PURCHASE_AMOUNT_MESSAGE = "구입 금액을 입력해주세요.";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 볼 넘버를 입력해주세요. ";
     private static final String INPUT_COUNT_OF_MANUAL_PURCHASE_MESSAGE = "수동으로 구매할 로또 수를 입력해주세요.";
-    private static final String INPUT_MANUAL_LOTTO_NUMBERS_MESSAGE = "수동으로 구매할 번호를 입력해 주세요";
+
     private static final String INPUT_WINNING_LOTTO_NUMBERS = "지난 주 당첨 번호를 입력해 주세요.";
     private static final Scanner SCANNER = new Scanner(System.in);
 
@@ -33,13 +33,18 @@ public class ConsoleInput implements Input {
 
     @Override
     public List<LottoDto> inputManualLottoNumbers(final int countOfManualPurchase) {
-        System.out.println(INPUT_MANUAL_LOTTO_NUMBERS_MESSAGE);
         List<String> informationNumbers = new ArrayList<>();
         for (int i = 0; i < countOfManualPurchase; i++) {
             SCANNER.nextLine();
             informationNumbers.add(SCANNER.nextLine());
         }
         return convertToLottoDto(informationNumbers);
+    }
+
+    @Override
+    public List<Integer> inputManualLottoNumbers2() {
+        SCANNER.nextLine();
+        return convertToSplitInteger(SCANNER.nextLine());
     }
 
     private List<LottoDto> convertToLottoDto(final List<String> informationNumbers) {

@@ -56,4 +56,26 @@ class LotteryTicketTest {
         //then
         assertThat(actual).isEqualTo(expect);
     }
+
+    @Test
+    @DisplayName("새로운 로또를 입력 받아 새로운 로또 티켓을 만들어 반환한다.")
+    void addLotto() {
+        //given
+        List<Lotto> lottos = List.of(
+                LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 5, 6)),
+                LottoFactory.createManualLotto(List.of(7, 8, 9, 10, 11, 12))
+        );
+        Lotto input = LottoFactory.createManualLotto(List.of(11, 12, 13, 14, 15, 16));
+        LotteryTicket expect = new LotteryTicket(List.of(
+                LottoFactory.createManualLotto(List.of(1, 2, 3, 4, 5, 6)),
+                LottoFactory.createManualLotto(List.of(7, 8, 9, 10, 11, 12)),
+                LottoFactory.createManualLotto(List.of(11, 12, 13, 14, 15, 16))
+        ));
+        LotteryTicket lotteryTicket = new LotteryTicket(lottos);
+        //when
+        LotteryTicket actual = lotteryTicket.addLotto(input);
+
+        //then
+        assertThat(actual).isEqualTo(expect);
+    }
 }

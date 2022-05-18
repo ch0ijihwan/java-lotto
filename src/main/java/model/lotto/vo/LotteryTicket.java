@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LotteryTicket {
 
@@ -18,6 +19,12 @@ public class LotteryTicket {
 
     public List<Lotto> getLotteryTicket() {
         return new ArrayList<>(lotteryTicket);
+    }
+
+    public LotteryTicket addLotto(final Lotto lotto) {
+        List<Lotto> addedLotteryTicket = Stream.concat(lotteryTicket.stream(), Stream.of(lotto))
+                .collect(Collectors.toUnmodifiableList());
+        return new LotteryTicket(addedLotteryTicket);
     }
 
     public List<Rank> getMatchingResult(final LastWinningLotto lastWinningLotto) {
