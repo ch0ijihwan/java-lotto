@@ -1,5 +1,6 @@
 package model.purchase;
 
+import model.purchase.vo.CountOfManualPurchase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

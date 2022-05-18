@@ -1,4 +1,6 @@
-package model.lotto;
+package model.lotto.vo;
+
+import model.result.vo.Rank;
 
 import java.util.ArrayList;
 import java.util.List;

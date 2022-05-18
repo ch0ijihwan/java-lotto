@@ -1,7 +1,6 @@
-package model.result;
+package model.result.vo;
 
-import model.lotto.Rank;
-import model.purchase.TotalPurchaseAmount;
+import model.purchase.vo.TotalPurchaseAmount;
 
 import java.util.Map;
 import java.util.Objects;

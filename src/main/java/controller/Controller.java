@@ -1,13 +1,13 @@
 package controller;
 
 import controller.dto.LottoDto;
-import model.lotto.LastWinningLotto;
-import model.lotto.LotteryGame;
-import model.lotto.Lotto;
-import model.lotto.LottoNumber;
 import model.lotto.factory.LottoFactory;
-import model.purchase.CountOfManualPurchase;
-import model.result.LotteryResult;
+import model.lotto.vo.LastWinningLotto;
+import model.lotto.vo.LotteryGame;
+import model.lotto.vo.Lotto;
+import model.lotto.vo.LottoNumber;
+import model.purchase.vo.CountOfManualPurchase;
+import model.result.vo.LotteryResult;
 import view.display.Display;
 import view.input.Input;
 

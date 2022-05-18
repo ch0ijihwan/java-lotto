@@ -1,10 +1,11 @@
-package model.lotto;
+package model.lotto.vo;
 
 import controller.dto.LottoDto;
 import model.lotto.factory.LottoFactory;
-import model.purchase.CountOfManualPurchase;
-import model.purchase.TotalPurchaseAmount;
-import model.result.LotteryResult;
+import model.purchase.vo.CountOfManualPurchase;
+import model.purchase.vo.TotalPurchaseAmount;
+import model.result.vo.LotteryResult;
+import model.result.vo.Rank;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,4 +1,4 @@
-package model.lotto;
+package model.lotto.vo;
 
 import java.util.Map;
 import java.util.Objects;

@@ -1,7 +1,5 @@
 package model.lotto.vo;
 
-import model.lotto.Lotto;
-import model.lotto.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
