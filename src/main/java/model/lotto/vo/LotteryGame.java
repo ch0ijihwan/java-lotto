@@ -28,7 +28,6 @@ public class LotteryGame {
         this.lotteryTicket = new LotteryTicket(initializePreprocessedLotteryTicket(getCountOfAutoPurchase(), informationOfManualLottos));
     }
 
-
     private List<Lotto> initializePreprocessedLotteryTicket(final int countOfAutoLotto, final List<LottoDto> informationOfManualLottos) {
         List<Lotto> autoLottos = createAutoLottos(countOfAutoLotto);
         List<Lotto> manualLottos = createManualLottos(informationOfManualLottos);
@@ -61,7 +60,6 @@ public class LotteryGame {
                 .stream()
                 .collect(Collectors.toUnmodifiableList());
     }
-
 
     public int getCountOfManualPurchase() {
         return countOfManualPurchase.getCountOfManualPurchase();
